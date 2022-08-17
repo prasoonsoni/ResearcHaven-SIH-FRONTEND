@@ -1,0 +1,16 @@
+#nav{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+
+    position:sticky;
+    top:0;
+
+    padding:2rem;
+    height:3vh;
+    max-width:100vw;
+    background-color:#000;
+    font-family:'Rubik';
+    font-weight:600;
+    
+}
