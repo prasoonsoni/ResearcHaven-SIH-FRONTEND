@@ -5,6 +5,7 @@ import Home from "./Components/Home/Home";
 import About from "./Components/About/About";
 import Contact from "./Components/Contact/Contact";
 import {useState} from 'react';
+import Dashboard from "./Components/Dashboard/Dashboard";
 function App() {
   const [showLoginForm,setShowLoginForm] = useState(false);
   const [showRegForm,setShowRegForm] = useState(false);
@@ -15,9 +16,9 @@ function App() {
           <Routes>
 
             <Route path="/" element={<Home showLoginForm={showLoginForm} setShowRegForm={setShowRegForm} setShowLoginForm={setShowLoginForm} showRegForm={showRegForm}/>} />
-
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
       </div>
     </Router>

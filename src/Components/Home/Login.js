@@ -15,12 +15,14 @@ import {
   CloseButton,
 } from "@chakra-ui/react";
 import ListItem from "./ListItem";
+import { useNavigate } from "react-router-dom";
 function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isVerified, setIsVerified] = useState(true);
   const toast = useToast();
+  const navigate = useNavigate()
   const data = {
     email: "",
     password: "",
@@ -46,6 +48,8 @@ function Login(props) {
     let data = await response.json();
     console.log(data);
     if (data.success) {
+      sessionStorage.setItem("token", data.token)
+      navigate('/dashboard')
       toast({
         title: "Successful",
         description: "You have successfully logged in.",
@@ -138,6 +142,7 @@ function Login(props) {
           color="white"
           _hover={{ backgroundColor: "#2096B6" }}
           isLoading={isLoading}
+          loadingText="Logging In..."
           type="submit"
           onClick={handleSubmit}
         >
