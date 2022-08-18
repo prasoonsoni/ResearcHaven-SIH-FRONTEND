@@ -12,5 +12,7 @@
     background-color:#000;
     font-family:'Rubik';
     font-weight:600;
+
+    z-index:9;
     
 }

@@ -63,7 +63,7 @@
         height:100vh;
         font-size:1.5rem;
         font-family:'Roboto Mono';
-        z-index:9;
+        z-index:1;
     }
     .nav-ul li{
         margin:2rem;

@@ -12,7 +12,7 @@ import {
   AlertTitle,
   AlertDescription,
   Box,
-  CloseButton
+  CloseButton,
 } from "@chakra-ui/react";
 import ListItem from './ListItem';
 function Login(props) {
@@ -26,6 +26,8 @@ function Login(props) {
     password: "",
   };
   const myData = {...data};
+
+  // on submitting form
   const handleSubmit = async (event) => {
     event.preventDefault();
     myData.email = email;
@@ -65,6 +67,8 @@ function Login(props) {
         setIsLoading(false);
     }
   };
+
+  // on changing form values
   const handleChange = (event) => {
     if (event.target.name === "email") {
       setEmail(event.target.value);
@@ -72,6 +76,7 @@ function Login(props) {
       setPassword(event.target.value);
     }
   };
+
   return (
     <Flex
       w="100%"
@@ -92,6 +97,7 @@ function Login(props) {
         direction="column"
         alignItems="center"
         justifyContent="center"
+        zIndex="0"
       >
         <FormControl isRequired>
           <FormLabel color="black">Email address</FormLabel>
@@ -106,9 +112,9 @@ function Login(props) {
             _placeholder={{ color: "grey" }}
             type="email"
             onChange={handleChange}
+            zIndex="0"
           />
         </FormControl>
-
         <FormControl mt={4} isRequired>
           <FormLabel color="black">Password</FormLabel>
           <Input
@@ -124,7 +130,7 @@ function Login(props) {
             onChange = {handleChange}
           />
         </FormControl>
-      </Flex>
+
       <Button
         mt={4}
         bg="#395B64"
@@ -136,6 +142,7 @@ function Login(props) {
       >
         Submit
       </Button>
+      </Flex>
       {!isVerified &&
       <Alert fontSize="12px" w='70%'mt={4} status='error'>
       <AlertIcon />

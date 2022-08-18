@@ -5,7 +5,7 @@ import Buttons from './Buttons';
 import WebCrawlers from './WebCrawlers';
 function Navbar() {
   return (
-    <nav id="nav">
+    <nav  id="nav">
         <WebCrawlers/>
         <NavLinks/>
         <Buttons/>
