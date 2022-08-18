@@ -4,7 +4,7 @@ import Icon from './Icon'
 
 function ListItem(props) {
   return (
-    <Flex mt={4} align="center" justify="center" gap={4}>
+    <Flex m={8} align="center" justify="center" gap={4}>
       <Icon/>
         <Text w="55%">
             {props.detail}

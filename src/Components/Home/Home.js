@@ -6,7 +6,8 @@ import { Flex } from '@chakra-ui/react';
 function Home(props) {
   return (
     <Flex direction={{base:'column',md:'row'}}>
-      <Intro/>
+      <Intro showLoginForm={props.showLoginForm} setShowRegForm={props.setShowRegForm} setShowLoginForm={props.setShowLoginForm} showRegForm={props.showRegForm}/>
+      
       <FormComponent showLoginForm={props.showLoginForm} setShowRegForm={props.setShowRegForm} setShowLoginForm={props.setShowLoginForm} showRegForm={props.showRegForm}/>
     </Flex>
   )

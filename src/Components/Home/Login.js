@@ -50,10 +50,11 @@ function Login(props) {
         title: "Successful",
         description: "You have successfully logged in.",
         status: "success",
-        duration: 2000,
+        duration: 1000,
         isClosable: true,
       });
       setIsLoading(false);
+
     } else {
       toast({
         title: "Error",
