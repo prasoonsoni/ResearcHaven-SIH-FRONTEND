@@ -113,7 +113,7 @@ function Register(props) {
         borderRadius="1rem"
         border="2px"
         borderColor="white"
-        w="55%"
+        w="65%"
         direction="column"
         // alignItems="center"
         justifyContent="center"

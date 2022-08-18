@@ -14,7 +14,7 @@ import {
   Box,
   CloseButton,
 } from "@chakra-ui/react";
-import ListItem from './ListItem';
+import ListItem from "./ListItem";
 function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,10 +25,11 @@ function Login(props) {
     email: "",
     password: "",
   };
-  const myData = {...data};
+  const myData = { ...data };
 
   // on submitting form
   const handleSubmit = async (event) => {
+    setIsLoading(true);
     event.preventDefault();
     myData.email = email;
     myData.password = password;
@@ -44,27 +45,27 @@ function Login(props) {
     });
     let data = await response.json();
     console.log(data);
-    if(data.success){
-        toast({
-            title: "Successful",
-          description: "You have successfully logged in.",
-          status: "success",
-          duration: 2000,
-          isClosable: true,
-        });
-        setIsLoading(false);
-    }else{
-        toast({
-            title: "Error",
-          description: data.message,
-          status: "error",
-          duration: 2000,
-          isClosable: true,
-        })
-        if(!data.verfied&&data.verified!==undefined){
-            setIsVerified(false);
-        }
-        setIsLoading(false);
+    if (data.success) {
+      toast({
+        title: "Successful",
+        description: "You have successfully logged in.",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
+      setIsLoading(false);
+    } else {
+      toast({
+        title: "Error",
+        description: data.message,
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
+      if (!data.verfied && data.verified !== undefined) {
+        setIsVerified(false);
+      }
+      setIsLoading(false);
     }
   };
 
@@ -90,10 +91,9 @@ function Login(props) {
       <Flex
         p={4}
         bg="#D9D9D9"
-        borderRadius="1rem"
-        border="2px"
-        borderColor="white"
-        w="55%"
+        borderRadius="1.2rem"
+        boxShadow={'inset -5px -5px 5px 0 grey'}
+        w="65%"
         direction="column"
         alignItems="center"
         justifyContent="center"
@@ -115,7 +115,7 @@ function Login(props) {
             zIndex="0"
           />
         </FormControl>
-        <FormControl mt={4} isRequired>
+        <FormControl mt={4} mb={4} isRequired>
           <FormLabel color="black">Password</FormLabel>
           <Input
             name="password"
@@ -127,42 +127,50 @@ function Login(props) {
             placeholder="Enter your password"
             _placeholder={{ color: "grey" }}
             type="password"
-            onChange = {handleChange}
+            onChange={handleChange}
           />
         </FormControl>
-
-      <Button
-        mt={4}
-        bg="#395B64"
-        color="white"
-        _hover={{ backgroundColor: "#2096B6" }}
-        isLoading={isLoading}
-        type="submit"
-        onClick={handleSubmit}
-      >
-        Submit
-      </Button>
       </Flex>
-      {!isVerified &&
-      <Alert fontSize="12px" w='70%'mt={4} status='error'>
-      <AlertIcon />
-      <Box>
-        <AlertTitle>Alert!</AlertTitle>
-        <AlertDescription >
-          Your account has not been verified. Please go through the link that we have sent to your mail to verify your account.<br/>
-          <Button fontSize="12px" size='sm' mr={2}>Click Here to re-send the verification link.</Button>
-        </AlertDescription>
+      <Button
+          mt={4}
+          bg="#395B64"
+          color="white"
+          _hover={{ backgroundColor: "#2096B6" }}
+          isLoading={isLoading}
+          type="submit"
+          onClick={handleSubmit}
+        >
+          Submit
+        </Button>
+      {!isVerified && (
+        <Alert fontSize="12px" w="100%" m={4} status="error">
+          <AlertIcon />
+          <Box>
+            <AlertTitle>Alert!</AlertTitle>
+            <AlertDescription>
+              Your account has not been verified. Please go through the link
+              that we have sent to your mail to verify your account.
+              <br />
+              <Button fontSize="12px" size="sm" mr={2}>
+                Click Here to re-send the verification link.
+              </Button>
+            </AlertDescription>
+          </Box>
+          <CloseButton
+            alignSelf="flex-start"
+            position="relative"
+            right={-1}
+            top={-1}
+            onClick={() => {
+              setTimeout(setIsVerified(!isVerified), 2000);
+            }}
+          />
+        </Alert>
+      )}
+      <Box w="70%">
+        <ListItem detail="Become a verified user today to get amazing perks!"/>
+        <ListItem detail="Match your research paper with our own semantic matching plagiarism checker."/>
       </Box>
-      <CloseButton
-        alignSelf='flex-start'
-        position='relative'
-        right={-1}
-        top={-1}
-        onClick={()=>{setTimeout(setIsVerified(!isVerified),2000)}}
-      />
-    </Alert>}
-    <ListItem/>
-    <ListItem/>
     </Flex>
   );
 }

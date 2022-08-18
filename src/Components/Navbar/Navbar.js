@@ -3,12 +3,12 @@ import './Navbar.css';
 import NavLinks from './NavLinks';
 import Buttons from './Buttons';
 import WebCrawlers from './WebCrawlers';
-function Navbar() {
+function Navbar(props) {
   return (
     <nav  id="nav">
         <WebCrawlers/>
         <NavLinks/>
-        <Buttons/>
+        <Buttons showLoginForm={props.showLoginForm} setShowRegForm={props.setShowRegForm} setShowLoginForm={props.setShowLoginForm} showRegForm={props.showRegForm} />
     </nav>
   );
 }

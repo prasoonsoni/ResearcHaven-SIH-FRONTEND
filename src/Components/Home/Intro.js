@@ -4,7 +4,7 @@ import SihLogo from './SihLogo';
 import WebCrawler from './WebCrawler';
 function Intro() {
   return (
-    <Flex mt={4} borderRight='1px' p={4}gap='2rem' w='100%' h='80vh' direction="column" alignItems="center" justifyContent="center">
+    <Flex mt={4} p={4}gap='2rem' w='100%' h='80vh' direction="column" alignItems="center" justifyContent="center">
         <SihLogo/>
         <Text textAlign="center" fontFamily='Roboto' fontWeight='900' fontSize={{base:'2xl', lg:'3xl'}}>
             for SIH 2022
