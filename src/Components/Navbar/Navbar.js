@@ -8,7 +8,7 @@ function Navbar(props) {
     <nav  id="nav">
         <WebCrawlers/>
         <NavLinks/>
-        <Buttons showLoginForm={props.showLoginForm} setShowRegForm={props.setShowRegForm} setShowLoginForm={props.setShowLoginForm} showRegForm={props.showRegForm} />
+        <Buttons/>
     </nav>
   );
 }

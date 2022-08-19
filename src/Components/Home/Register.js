@@ -203,12 +203,14 @@ function Register(props) {
       </Flex>
       <Button
         mt={4}
+        mb={4}
         bg="#395B64"
         color="white"
         _hover={{ backgroundColor: "#2096B6" }}
         isLoading={isSubmitting}
         type="submit"
         onClick={handleSubmit}
+
       >
         Submit
       </Button>
