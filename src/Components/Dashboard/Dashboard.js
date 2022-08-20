@@ -12,7 +12,7 @@ function Dashboard() {
   return (
     <Tabs isFitted variant="enclosed">
       <TabList mb="1em">
-        <Tab>MANAGE YOUR DOCUMENTS</Tab>
+        <Tab>Manage Your Documents</Tab>
         <Tab>Two</Tab>
       </TabList>
       <TabPanels>

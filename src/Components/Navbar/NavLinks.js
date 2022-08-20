@@ -2,9 +2,9 @@ import React from "react";
 import "./NavLinks.css";
 import { Link } from "react-router-dom";
 import {useState, useEffect} from 'react';
-import { VscChromeClose } from "react-icons/vsc";
-import { AiOutlineMenu } from "react-icons/ai";
-import { Show, Box } from "@chakra-ui/react";
+// import { VscChromeClose } from "react-icons/vsc";
+// import { AiOutlineMenu } from "react-icons/ai";
+// import { Show, Box } from "@chakra-ui/react";
 
 function NavLinks() {
   // for changing navlinks visibility
@@ -40,11 +40,11 @@ function NavLinks() {
           </li>
         </ul>)}
       {/* menu icon and close icon */}
-      <Show below='md'>
+      {/* <Show below='md'>
         <Box border='1px' p={2} borderColor="grey" borderRadius="0.2rem" onClick={toggleNav} style={{zIndex:9}}>
           {isOpen ? <VscChromeClose/>:<AiOutlineMenu/>}
         </Box>
-      </Show>
+      </Show> */}
     </div>
   );
 }

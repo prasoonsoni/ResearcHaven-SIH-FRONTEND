@@ -33,6 +33,16 @@ function Login(props) {
   const handleSubmit = async (event) => {
     setIsLoading(true);
     event.preventDefault();
+    if(email==='' || password===''){
+      toast({
+        title: "Fields should not be Empty.",
+        description: "Please fill all the details correctly",
+        status: "error",
+        duration:1500,
+        isClosable: true,
+      });
+      setIsLoading(false);
+    }else{
     myData.email = email;
     myData.password = password;
     let url = "https://webcrawlers-sih.vercel.app/api/user/login";
@@ -54,7 +64,7 @@ function Login(props) {
         title: "Successful",
         description: "You have successfully logged in.",
         status: "success",
-        duration: 1000,
+        duration:1500,
         isClosable: true,
       });
       setIsLoading(false);
@@ -71,7 +81,7 @@ function Login(props) {
         setIsVerified(false);
       }
       setIsLoading(false);
-    }
+    }}
   };
 
   // on changing form values
@@ -90,7 +100,7 @@ function Login(props) {
       alignItems="center"
       justifyContent="center"
     >
-      <Text fontSize="5xl" fontFamily="Poppins" mb={2}>
+      <Text fontSize="5xl" fontFamily="Poppins" mb={8} mt={8}>
         Login
       </Text>
       <Flex
@@ -98,7 +108,7 @@ function Login(props) {
         bg="#D9D9D9"
         borderRadius="1.2rem"
         boxShadow={'inset -5px -5px 5px 0 grey'}
-        w="65%"
+        w={props.width}
         direction="column"
         alignItems="center"
         justifyContent="center"
@@ -173,7 +183,7 @@ function Login(props) {
           />
         </Alert>
       )}
-      <Box w="70%">
+      <Box w="100%">
         <ListItem detail="Become a verified user today to get amazing perks!"/>
         <ListItem detail="Match your research paper with our own semantic matching plagiarism checker."/>
       </Box>

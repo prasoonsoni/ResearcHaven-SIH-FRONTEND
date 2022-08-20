@@ -20,60 +20,71 @@ function Register(props) {
   const toast = useToast();
 
   const data = {
-    first_name:'',
-    last_name:'',
-    email:'',
-    password:''
-  }
-  const myData = {...data};
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+  };
+  const myData = { ...data };
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-    // set data
-    myData['first_name'] = first;
-    myData['last_name'] = last;
-    myData['email'] = email;
-    myData['password'] = pass;
-    // check if passwords are same or not
-    if (cpass !== pass) {
+    if (email === "" || pass === "" || first===''||last==='') {
       toast({
-        title: "Passwords do not match",
-        description: "Both the passwords should match.",
+        title: "Fields should not be Empty.",
+        description: "Please fill all the details correctly",
         status: "error",
-        duration: 2000,
+        duration: 1500,
         isClosable: true,
       });
       setIsSubmitting(false);
     } else {
-      let url = "https://webcrawlers-sih.vercel.app/api/user/create";
-      let response = await fetch(url,{
-        method:'POST',
-        headers: {
-            Accept: 'application.json',
-            'Content-Type': 'application/json'
-          },
-        body:JSON.stringify(myData),
-        cache:'default'
-      });
-      let data = await response.json();
-      if (data.success) {
+      // set data
+      myData["first_name"] = first;
+      myData["last_name"] = last;
+      myData["email"] = email;
+      myData["password"] = pass;
+      // check if passwords are same or not
+      if (cpass !== pass) {
         toast({
-          title: "Account created.",
-          description: "We've created your account for you.",
-          status: "success",
+          title: "Passwords do not match",
+          description: "Both the passwords should match.",
+          status: "error",
           duration: 2000,
           isClosable: true,
         });
         setIsSubmitting(false);
-      }else{
-        toast({
+      } else {
+        let url = "https://webcrawlers-sih.vercel.app/api/user/create";
+        let response = await fetch(url, {
+          method: "POST",
+          headers: {
+            Accept: "application.json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(myData),
+          cache: "default",
+        });
+        let data = await response.json();
+        if (data.success) {
+          toast({
+            title: "Account created.",
+            description: "We've created your account for you.",
+            status: "success",
+            duration: 2000,
+            isClosable: true,
+          });
+          setIsSubmitting(false);
+        } else {
+          toast({
             title: "Error",
             description: data.message,
             status: "error",
             duration: 2000,
             isClosable: true,
           });
-        setIsSubmitting(false);
+          setIsSubmitting(false);
+        }
       }
     }
   };
@@ -82,17 +93,12 @@ function Register(props) {
     let name = event.target.name;
     if (name === "first") {
       setFirst(event.target.value);
-      
-      
     } else if (name === "last") {
-        setLast(event.target.value);
-        
+      setLast(event.target.value);
     } else if (name === "email") {
-        setEmail(event.target.value);
-        
+      setEmail(event.target.value);
     } else if (name === "pass") {
-        setPass(event.target.value);
-        
+      setPass(event.target.value);
     } else if (name === "cpass") {
       setCpass(event.target.value);
     }
@@ -113,7 +119,7 @@ function Register(props) {
         borderRadius="1rem"
         border="2px"
         borderColor="white"
-        w="65%"
+        w={props.width}
         direction="column"
         // alignItems="center"
         justifyContent="center"
@@ -210,7 +216,6 @@ function Register(props) {
         isLoading={isSubmitting}
         type="submit"
         onClick={handleSubmit}
-
       >
         Submit
       </Button>

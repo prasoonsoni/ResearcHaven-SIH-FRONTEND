@@ -1,9 +1,28 @@
-import { Flex, Text, Show, HStack, Button } from "@chakra-ui/react";
+import {
+  Flex,
+  Text,
+  Show,
+  HStack,
+  Button,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { UserConsumer } from "../Contexts/userContext";
 import React from "react";
 import SihLogo from "./SihLogo";
 import WebCrawler from "./WebCrawler";
+import Login from "../Home/Login";
+import Register from "../Home/Register";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from "@chakra-ui/react";
 function Intro() {
+  const { isOpen: isLoginOpen , onOpen: onLoginOpen, onClose: onLoginClose } = useDisclosure()
+const { isOpen: isRegisterOpen , onOpen: onRegisterOpen, onClose: onRegisterClose } = useDisclosure()
   return (
     <UserConsumer>
       {(props) => {
@@ -48,30 +67,51 @@ function Intro() {
               </u>{" "}
               project
             </Text>
+
+            {/* to show forms */}
             <Show below="md">
               <HStack>
-                <Button
-                  onClick={() => {
-                    props.setShowLoginForm(true);
-                    props.setShowRegForm(false);
-                    window.scrollBy(0, 1000);
-                  }}
-                  mr={2}
-                  colorScheme="button"
-                >
+
+                {/* login */}
+                <Button size="lg" fontSize="1.5rem" onClick={onLoginOpen} colorScheme="red">
                   Login
                 </Button>
-                <Button
-                  onClick={() => {
-                    props.setShowLoginForm(false);
-                    props.setShowRegForm(true);
-                    window.scrollBy(0, 2000);
-                  }}
-                  colorScheme="blue"
-                  variant="outline"
-                >
+                <Modal bg ="black" isOpen={isLoginOpen} onClose={onLoginClose}>
+                  <ModalOverlay/>
+                  <ModalContent bg="#171717">
+                    
+                    <ModalCloseButton />
+                    <ModalBody>
+                      <Login width="100%"/>
+                    </ModalBody>
+
+                    <ModalFooter>
+                      <Button colorScheme="blue" mr={3} onClick={onLoginClose}>
+                        Close
+                      </Button>
+                    </ModalFooter>
+                  </ModalContent>
+                </Modal>
+
+                {/* register */}
+                <Button size="lg" fontSize="1.5rem" onClick={onRegisterOpen} colorScheme="messenger">
                   Register
                 </Button>
+                <Modal bg = "#000" w = "100%" isOpen={isRegisterOpen} onClose={onRegisterClose}>
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalCloseButton />
+                    <ModalBody>
+                      <Register width="100%"/>
+                    </ModalBody>
+
+                    <ModalFooter>
+                      <Button colorScheme="blue" mr={3} onClick={onRegisterClose}>
+                        Close
+                      </Button>
+                    </ModalFooter>
+                  </ModalContent>
+                </Modal>
               </HStack>
             </Show>
           </Flex>

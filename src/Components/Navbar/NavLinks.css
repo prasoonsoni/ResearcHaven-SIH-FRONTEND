@@ -35,7 +35,7 @@
 .nav-ul li a{
     text-decoration:none;
     color:white;
-    letter-spacing: 0.5rem;
+    letter-spacing: 0;
     padding-bottom:0.4rem;
     border:0px solid #ff0000;
     transition:0.1s ease-in-out;
