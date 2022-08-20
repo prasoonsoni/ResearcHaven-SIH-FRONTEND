@@ -19,11 +19,11 @@ function MenuComp() {
         variant="outline"
       />
       <MenuList>
-        <MenuItem icon={<AddIcon />} command="⌘T">
-          New Tab
+        <MenuItem icon={<AddIcon />}>
+          Create Document
         </MenuItem>
-        <MenuItem icon={<InsertLinkIcon />} command="⌘N">
-          New Window
+        <MenuItem icon={<InsertLinkIcon />}>
+          Verify Documents
         </MenuItem>
       </MenuList>
     </Menu>

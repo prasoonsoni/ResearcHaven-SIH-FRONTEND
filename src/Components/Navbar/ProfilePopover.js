@@ -15,7 +15,7 @@ import Profile from "./Profile";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UserSkeleton from "./UserSkeleton";
-
+import {useToken} from '../Hooks/useToken';
 function ProfilePopover() {
   const navigate = useNavigate();
   const [first, setFirst] = useState("");
@@ -38,7 +38,7 @@ function ProfilePopover() {
       let data = await response.json();
       if (data.success) {
         sessionStorage.setItem("userObj", data);
-        console.log(data);
+        console.log("userObj");
         setFirst(data.user.first_name);
         setLast(data.user.last_name);
         setEmail(data.user.email);
@@ -48,7 +48,7 @@ function ProfilePopover() {
     // sessionStorage.setItem('userObj',data);
     fetchData();
   }, []);
-  const token = sessionStorage.getItem("token");
+  const token = useToken();
   if (isLoading) {
     return <UserSkeleton />;
   } else if (token) {
