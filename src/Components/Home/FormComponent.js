@@ -9,9 +9,9 @@ function FormComponent() {
     <UserConsumer>
       {(props)=>{
         if(props.showRegForm===true){
-          return <><Register width="65%" m={4}/></>
+          return <><Register show="md" width="65%" m={4}/></>
         }else if(props.showLoginForm===true){
-          return <><Login width="70%" m={4}/></>
+          return <><Login show="md" width="70%" m={4}/></>
         }
       }}
     </UserConsumer>

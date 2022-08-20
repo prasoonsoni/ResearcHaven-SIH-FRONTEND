@@ -20,9 +20,27 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
+import { useEffect,useState } from "react";
+
 function Intro() {
-  const { isOpen: isLoginOpen , onOpen: onLoginOpen, onClose: onLoginClose } = useDisclosure()
-const { isOpen: isRegisterOpen , onOpen: onRegisterOpen, onClose: onRegisterClose } = useDisclosure()
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const {
+    isOpen: isLoginOpen,
+    onOpen: onLoginOpen,
+    onClose: onLoginClose,
+  } = useDisclosure();
+  const {
+    isOpen: isRegisterOpen,
+    onOpen: onRegisterOpen,
+    onClose: onRegisterClose,
+  } = useDisclosure();
+  useEffect(() => {
+    const changeWidth = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", changeWidth);
+  }, []);
   return (
     <UserConsumer>
       {(props) => {
@@ -70,19 +88,22 @@ const { isOpen: isRegisterOpen , onOpen: onRegisterOpen, onClose: onRegisterClos
 
             {/* to show forms */}
             <Show below="md">
-              <HStack>
-
+              {<HStack>
                 {/* login */}
-                <Button size="lg" fontSize="1.5rem" onClick={onLoginOpen} colorScheme="red">
+                <Button
+                  size="lg"
+                  fontSize="1.5rem"
+                  onClick={onLoginOpen}
+                  colorScheme="red"
+                >
                   Login
                 </Button>
-                <Modal bg ="black" isOpen={isLoginOpen} onClose={onLoginClose}>
-                  <ModalOverlay/>
+                <Modal isOpen={isLoginOpen} onClose={onLoginClose}>
+                  <ModalOverlay />
                   <ModalContent bg="#171717">
-                    
                     <ModalCloseButton />
                     <ModalBody>
-                      <Login width="100%"/>
+                      <Login show="" width="100%" />
                     </ModalBody>
 
                     <ModalFooter>
@@ -94,25 +115,39 @@ const { isOpen: isRegisterOpen , onOpen: onRegisterOpen, onClose: onRegisterClos
                 </Modal>
 
                 {/* register */}
-                <Button size="lg" fontSize="1.5rem" onClick={onRegisterOpen} colorScheme="messenger">
+                <Button
+                  size="lg"
+                  fontSize="1.5rem"
+                  onClick={onRegisterOpen}
+                  colorScheme="messenger"
+                >
                   Register
                 </Button>
-                <Modal bg = "#000" w = "100%" isOpen={isRegisterOpen} onClose={onRegisterClose}>
+                <Modal
+                  bg="#000"
+                  w="100%"
+                  isOpen={isRegisterOpen}
+                  onClose={onRegisterClose}
+                >
                   <ModalOverlay />
-                  <ModalContent>
+                  <ModalContent bg="#171717">
                     <ModalCloseButton />
                     <ModalBody>
-                      <Register width="100%"/>
+                      <Register show="" width="100%" />
                     </ModalBody>
 
                     <ModalFooter>
-                      <Button colorScheme="blue" mr={3} onClick={onRegisterClose}>
+                      <Button
+                        colorScheme="blue"
+                        mr={3}
+                        onClick={onRegisterClose}
+                      >
                         Close
                       </Button>
                     </ModalFooter>
                   </ModalContent>
                 </Modal>
-              </HStack>
+              </HStack>}
             </Show>
           </Flex>
         );
