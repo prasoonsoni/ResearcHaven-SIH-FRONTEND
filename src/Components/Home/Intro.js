@@ -20,10 +20,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { useEffect,useState } from "react";
-
 function Intro() {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const {
     isOpen: isLoginOpen,
     onOpen: onLoginOpen,
@@ -34,13 +31,6 @@ function Intro() {
     onOpen: onRegisterOpen,
     onClose: onRegisterClose,
   } = useDisclosure();
-  useEffect(() => {
-    const changeWidth = () => {
-      setScreenWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", changeWidth);
-  }, []);
   return (
     <UserConsumer>
       {(props) => {

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -10,20 +9,9 @@ function Dashboard() {
     }
   });
   return (
-    <Tabs isFitted variant="enclosed">
-      <TabList mb="1em">
-        <Tab>Manage Your Documents</Tab>
-        <Tab>Two</Tab>
-      </TabList>
-      <TabPanels>
-        <TabPanel>
-          <p>one!</p>
-        </TabPanel>
-        <TabPanel>
-          <p>two!</p>
-        </TabPanel>
-      </TabPanels>
-    </Tabs>
+    <>
+    
+    </>
   );
 }
 

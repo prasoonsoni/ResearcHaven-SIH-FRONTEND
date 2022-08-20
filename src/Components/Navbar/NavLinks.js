@@ -1,6 +1,6 @@
 import React from "react";
 import "./NavLinks.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 // import { VscChromeClose } from "react-icons/vsc";
 // import { AiOutlineMenu } from "react-icons/ai";
@@ -9,36 +9,30 @@ import { useState, useEffect } from "react";
 function NavLinks() {
   // for changing navlinks visibility
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [isOpen, setOpen] = useState(false);
-
-  const toggleNav = () => {
-    setOpen(!isOpen);
-  };
-
+  const token = sessionStorage.getItem('token');
+  const location = useLocation();
   useEffect(() => {
     const changeWidth = () => {
       setScreenWidth(window.innerWidth);
     };
-
     window.addEventListener("resize", changeWidth);
   }, []);
-
   return (
     <div className="nav-container">
-      {(isOpen || screenWidth > 1040) && (
-        <ul className={isOpen ? "nav-ul" : "nav-ul responsive"}>
+      {(!token && screenWidth > 1040 && location.pathname!=='/dashboard') && (
+        <ul className="nav-ul">
           <li className="list-item">
-            <Link to="/" onClick={toggleNav}>
+            <Link to="/">
               Home
             </Link>
           </li>
           <li className="list-item">
-            <Link to="/about" onClick={toggleNav}>
+            <Link to="/about">
               About
             </Link>
           </li>
           <li className="list-item">
-            <Link to="/contact" onClick={toggleNav}>
+            <Link to="/contact">
               Contact
             </Link>
           </li>

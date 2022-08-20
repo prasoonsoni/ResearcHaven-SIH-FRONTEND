@@ -19,12 +19,7 @@ function App() {
             <Route
               path="/"
               element={
-                <Home
-                  showLoginForm={showLoginForm}
-                  setShowRegForm={setShowRegForm}
-                  setShowLoginForm={setShowLoginForm}
-                  showRegForm={showRegForm}
-                />
+                <Home/>
               }
             />
             <Route path="/about" element={<About />} />

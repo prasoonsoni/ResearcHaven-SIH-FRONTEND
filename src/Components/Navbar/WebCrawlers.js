@@ -1,9 +1,12 @@
 import { Flex, Text } from "@chakra-ui/react";
 import React from "react";
-
+import { useLocation } from 'react-router-dom';
+import MenuComp from './MenuComp';
 function WebCrawlers() {
+  const location = useLocation();
   return (
-    <Flex alignItems="center">
+    <Flex gap={4} alignItems="center">
+      {location.pathname==='/dashboard' && <MenuComp/>}
     <Text fontFamily="Roboto Mono" fontSize="2xl">
         WEBCRAWLERS
       </Text>
