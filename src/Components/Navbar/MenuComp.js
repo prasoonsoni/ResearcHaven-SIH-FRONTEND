@@ -5,11 +5,12 @@ import {
   MenuList,
   MenuItem
 } from "@chakra-ui/react";
-
+import {Link, useLocation} from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import AddIcon from '@mui/icons-material/Add';
 import InsertLinkIcon from '@mui/icons-material/InsertLink';
 function MenuComp() {
+  const location = useLocation();
   return (
     <Menu>
       <MenuButton
@@ -19,12 +20,13 @@ function MenuComp() {
         variant="outline"
       />
       <MenuList>
-        <MenuItem icon={<AddIcon />}>
+        <Link to={"/dashboard/create"}><MenuItem icon={<AddIcon />}>
           Create Document
-        </MenuItem>
+        </MenuItem></Link>
+        <Link to={"/dashboard/verify"}>
         <MenuItem icon={<InsertLinkIcon />}>
           Verify Documents
-        </MenuItem>
+        </MenuItem></Link>
       </MenuList>
     </Menu>
   );

@@ -22,9 +22,9 @@ function App() {
                 <Home/>
               }
             />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route exact path="/about" element={<About />} />
+            <Route exact path="/contact" element={<Contact />} />
+            <Route exact path="/dashboard/*" element={<Dashboard />} />
           </Routes>
         </div>
       </Router>

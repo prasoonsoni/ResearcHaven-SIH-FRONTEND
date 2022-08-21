@@ -3,6 +3,7 @@ import { HStack, Button, Show } from "@chakra-ui/react";
 import { UserConsumer } from "../Contexts/userContext";
 import ProfilePopover from "./ProfilePopover";
 import { useLocation } from "react-router-dom";
+
 function Buttons() {
   const token = sessionStorage.getItem("token");
   const location = useLocation();
@@ -13,7 +14,7 @@ function Buttons() {
           <>
             <Show above="md">
               <HStack>
-                {!token && location.pathname!=='/dashboard' && (
+                {!token && !location.pathname.match('/dashboard+/') && (
                   <>
                     <Button
                       onClick={() => {
@@ -39,7 +40,7 @@ function Buttons() {
                 )}
               </HStack>
             </Show>
-            {token && location.pathname==='/dashboard' && (
+            {token && (
               <ProfilePopover/>
             )}
           </>

@@ -6,7 +6,7 @@ function WebCrawlers() {
   const location = useLocation();
   return (
     <Flex gap={4} alignItems="center">
-      {location.pathname==='/dashboard' && <MenuComp/>}
+      {location.pathname.match('dashboard+') && <MenuComp/>}
     <Text fontFamily="Roboto Mono" fontSize="2xl">
         WEBCRAWLERS
       </Text>
