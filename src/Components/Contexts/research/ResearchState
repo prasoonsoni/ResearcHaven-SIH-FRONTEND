@@ -1,0 +1,29 @@
+import React, { useState } from "react";
+
+import ResearchContext from "./researchContext";
+
+const ResearchState = (props) => {
+  const [document, setDocument] = useState({
+    id: props.id,
+    title: "",
+    authors: "",
+    keywords: "",
+    abstract: "",
+    introduction: "",
+    literature_survey: "",
+    proposed_work: "",
+    methodology: "",
+    experimental_evaluation: "",
+    conclusion: "",
+    references: "",
+  });
+  return (
+    <ResearchContext.Provider value={{document,setDocument}}>
+        {props.children}
+    </ResearchContext.Provider>
+  )
+};
+
+export default ResearchState;
+
+

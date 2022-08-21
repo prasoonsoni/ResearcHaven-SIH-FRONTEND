@@ -1,25 +1,40 @@
-import React, { useEffect } from "react";
-import { Textarea, Text } from "@chakra-ui/react";
+import React, { useRef } from "react";
+import { Textarea, Button, useToast } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from "@chakra-ui/react";
 function InputElement(props) {
   let [value, setValue] = React.useState(props.value);
-  console.log(props.value);
-  const newDoc = {...props.document};
+  const newDoc = { ...props.document };
+  const inputValRef = useRef(null);
+  const toast = useToast();
   const handleInputChange = (e) => {
-    console.log(value);
     setValue(e.target.value);
-    newDoc[e.target.name] = e.target.value;
-    props.setDocument(newDoc);
-    console.log(newDoc);
   };
-  useEffect(()=>{
-
-  })
+  const handleSaveField = () => {
+    newDoc[inputValRef.current.name] = inputValRef.current.value;
+    props.setDocument(newDoc);
+    toast({
+      title: "Successful",
+      description: "Field Saved!",
+      status: "success",
+      duration: 1500,
+      isClosable: true,
+    });
+  };
   return (
     <>
-      <Text mb={8} fontSize="2rem">
-        {props.name.toUpperCase()}
-      </Text>
       <Textarea
+        ref={inputValRef}
+        onFocus={(e) =>
+          e.currentTarget.setSelectionRange(
+            e.currentTarget.value.length,
+            e.currentTarget.value.length
+          )
+        }
         name={props.name}
         textAlign="left"
         value={value}
@@ -28,14 +43,21 @@ function InputElement(props) {
         resize="none"
         variant="filled"
         autoFocus={true}
-        _focus={{
-          border: "none",
-          boxShadow:
-            "0.5px 0.5px 0px 0.5px white,-0.5px -0.5px 0px 0.5px white",
-        }}
+        _focus={{ outline: "none", boxShadow: "none" }}
+        boxShadow="none"
         h="50%"
         p={8}
       />
+      <Button colorScheme="teal" onClick={handleSaveField} mt={8} mb={8}>
+        Save this field
+      </Button>
+      <Alert status="error" display="flex" align="center" justify="center">
+        
+        <AlertDescription w="100%" direction="row">
+        <AlertIcon/>
+          You cannot undo the action of saving the field!
+        </AlertDescription>
+      </Alert>
     </>
   );
 }
