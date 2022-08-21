@@ -28,7 +28,6 @@ function MenuComp() {
       console.log(data.message);
     }
   };
-
   return (
     <Menu>
       <MenuButton
@@ -46,13 +45,13 @@ function MenuComp() {
           >
             Create Document
           </MenuItem>
-        <Link to={"/dashboard/verify"}>
+        <Link to={"/dashboard/manage"}>
           <MenuItem
             _active={{ background: "transparent" }}
             _focus={{ background: "teal" }}
             icon={<InsertLinkIcon />}
           >
-            Verify Documents
+            Manage Your Documents
           </MenuItem>
         </Link>
       </MenuList>

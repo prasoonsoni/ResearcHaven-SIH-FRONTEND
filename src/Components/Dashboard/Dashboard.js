@@ -9,6 +9,7 @@ import Stats from "./Stats";
 import { Flex } from "@chakra-ui/react";
 import Verify from "./Verify";
 import EditPaper from "./EditPaper";
+import Manage from "./Manage";
 function Dashboard() {
   const navigate = useNavigate();
   const user = useFetch(
@@ -27,6 +28,7 @@ function Dashboard() {
         <Route index element={<Stats user={user}/>} />
         <Route exact path="/edit/:id" element={<EditPaper/>} />
         <Route exact path="/verify" element={<Verify/>} />
+        <Route exact path="/manage" element={<Manage/>} />
         <Route path="/*" element={<>This route does not exist :/</>} />
       </Routes>
     </Flex>

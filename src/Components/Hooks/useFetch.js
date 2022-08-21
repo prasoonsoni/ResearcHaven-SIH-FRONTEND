@@ -19,6 +19,7 @@ export const useFetch = (url,method,body)=>{
             if(data.success){
                 setData(data);
                 setLoading(false);
+                console.log(data);
             }else{
                 setError(data.message);
                 setLoading(false);
