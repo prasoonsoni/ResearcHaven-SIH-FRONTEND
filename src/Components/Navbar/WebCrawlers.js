@@ -7,9 +7,6 @@ function WebCrawlers() {
   return (
     <Flex gap={4} alignItems="center">
       {location.pathname.match('dashboard+') && <MenuComp/>}
-    <Text fontFamily="Roboto Mono" fontSize="2xl">
-        WEBCRAWLERS
-      </Text>
       <svg
         width="65"
         height="55"
@@ -79,6 +76,9 @@ function WebCrawlers() {
           fill="black"
         />
       </svg>
+      <Text fontFamily="Roboto Mono" fontSize="2xl">
+        WEBCRAWLERS
+      </Text>
     </Flex>
   );
 }

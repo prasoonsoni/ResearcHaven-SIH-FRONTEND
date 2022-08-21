@@ -13,7 +13,7 @@ export const useFetch = (url,method,body)=>{
                     "Content-type": "application/json",
                     "auth-token":sessionStorage.getItem('token')
                 },
-                body:method==='GET'? null:body
+                body:body?body:null
             });
             let data = await response.json();
             if(data.success){
@@ -26,6 +26,6 @@ export const useFetch = (url,method,body)=>{
             }
         };
         fetchData();
-    },[url]);
+    },[url,method,body]);
     return [data,isLoading,error];
 }

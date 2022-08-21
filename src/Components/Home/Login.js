@@ -57,7 +57,6 @@ function Login(props) {
         cache: "default",
       });
       let data = await response.json();
-      console.log(data);
       if (data.success) {
         sessionStorage.setItem("token", data.token);
         navigate("/dashboard");

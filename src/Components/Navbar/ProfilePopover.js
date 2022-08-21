@@ -25,6 +25,7 @@ function ProfilePopover() {
   const [last, setLast] = useState("");
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   useEffect(() => {
     setIsLoading(true);
     let fetchData = async () => {
@@ -47,6 +48,10 @@ function ProfilePopover() {
         setIsLoading(false);
       }
     };
+    const changeWidth = () => {
+      setScreenWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", changeWidth);
     // sessionStorage.setItem('userObj',data);
     fetchData();
   }, []);
@@ -57,59 +62,77 @@ function ProfilePopover() {
     return (
       <Box>
         <DarkMode>
-        <Popover _focus={{ outline: "none" }}>
-        <Button mr={4} onClick={(open)=>{navigate('/')}}>Go To Dashboard</Button>
-          <PopoverTrigger
-            boxShadow="none"
-            bg="none"
-            _hover={{ bg: "none", outline: "none", boxShadow: "none" }}
-          >
-            <Button
-              _hover={{ background: "none" }}
-              _focus={{ bg: "none", outline: "none", boxShadow: "none" }}
-              bg="none"
-              h="100%"
-              p={2}
-            >
-              <Profile first={first} last={last} />
-            </Button>
-          </PopoverTrigger>
-          <Portal h="100%" bg="none" p={2}>
-            <PopoverContent _focus={{ outline: "none", boxShadow: "none" }}>
-              <PopoverArrow />
-              <PopoverCloseButton />
-              <PopoverHeader
-                h="250px"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                flexDirection="column"
-                gap={4}
-                w="100%"
+          <Popover _focus={{ outline: "none" }}>
+            {(screenWidth > "1040") && (
+              <Button
+                mr={4}
+                onClick={(open) => {
+                  navigate("/");
+                }}
               >
-                <Avatar size="xl" name={first + " " + last} />
-                <Text>
-                  {first} {last}
-                </Text>
-                <Text>{email}</Text>
-              </PopoverHeader>
-              <PopoverBody display="flex"
-                alignItems="center"
-                justifyContent="center">
-
-                <Button
-                w="100%"
-                  onClick={() => {
-                    sessionStorage.clear();
-                    navigate("/");
-                  }}
+                Go To Dashboard
+              </Button>
+            )}
+            <PopoverTrigger
+              boxShadow="none"
+              bg="none"
+              _hover={{ bg: "none", outline: "none", boxShadow: "none" }}
+            >
+              <Button
+                _hover={{ background: "none" }}
+                _focus={{ bg: "none", outline: "none", boxShadow: "none" }}
+                bg="none"
+                h="100%"
+                p={2}
+              >
+                <Profile first={first} last={last} />
+              </Button>
+            </PopoverTrigger>
+            <Portal h="100%" bg="none" p={2}>
+              <PopoverContent _focus={{ outline: "none", boxShadow: "none" }}>
+                <PopoverArrow />
+                <PopoverCloseButton />
+                <PopoverHeader
+                  h="250px"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  flexDirection="column"
+                  gap={4}
+                  w="100%"
                 >
-                  Logout
-                </Button>
-              </PopoverBody>
-            </PopoverContent>
-          </Portal>
-        </Popover>
+                  <Avatar size="xl" name={first + " " + last} />
+                  <Text>
+                    {first} {last}
+                  </Text>
+                  <Text>{email}</Text>
+                </PopoverHeader>
+                <PopoverBody
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  {(screenWidth < "1040")&&
+                    <Button
+                      mr={4}
+                      onClick={(open) => {
+                        navigate("/");
+                      }}
+                    >Go To Dashboard</Button>
+                  }
+                  <Button
+                    w="50%"
+                    onClick={() => {
+                      sessionStorage.clear();
+                      navigate("/");
+                    }}
+                  >
+                    Logout
+                  </Button>
+                </PopoverBody>
+              </PopoverContent>
+            </Portal>
+          </Popover>
         </DarkMode>
       </Box>
     );

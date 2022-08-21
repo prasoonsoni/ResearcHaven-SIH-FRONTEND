@@ -10,6 +10,7 @@ function Profile(props) {
             label={props.first + " " + props.last}
             hasArrow
             arrowSize={10}
+            position="left"
           >
             <Avatar name={props.first + " " + props.last} />
           </Tooltip>

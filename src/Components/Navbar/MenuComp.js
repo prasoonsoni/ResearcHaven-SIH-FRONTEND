@@ -1,31 +1,61 @@
-import React from "react";
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem
-} from "@chakra-ui/react";
-import {Link} from 'react-router-dom';
-import MenuIcon from '@mui/icons-material/Menu';
-import AddIcon from '@mui/icons-material/Add';
-import InsertLinkIcon from '@mui/icons-material/InsertLink';
+import React, { useState } from "react";
+import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
+import { Link, useNavigate } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
+import AddIcon from "@mui/icons-material/Add";
+import InsertLinkIcon from "@mui/icons-material/InsertLink";
 function MenuComp() {
+  const [id, setId] = useState("");
+  const navigate = useNavigate()
+  const fetchdata = async () => {
+    let response = await fetch(
+      "https://webcrawlers-sih.vercel.app/api/researchpaper/create",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          "auth-token": sessionStorage.getItem("token"),
+        },
+      }
+    );
+    let data = await response.json();
+    if (data.success) {
+      // setId(data["data"].id)
+      // console.log(data["data"].id)
+      // console.log(id);
+      let path = `/dashboard/edit/${data.data.id}`
+      navigate(path);
+    } else {
+      console.log(data.message);
+    }
+  };
+
   return (
     <Menu>
       <MenuButton
         as={MenuIcon}
         aria-label="Options"
-        icon={<MenuIcon _hover={{cursor:'pointer'}} />}
+        icon={<MenuIcon _hover={{ cursor: "pointer" }} />}
         variant="outline"
       />
-      <MenuList bg="#171717">
-        <Link to={"/dashboard/create"}><MenuItem _active={{background:"transparent"}} _focus={{background:"teal"}} icon={<AddIcon/>}>
-          Create Document
-        </MenuItem></Link>
+      <MenuList bg="#171717" >
+          <MenuItem
+          onClick={fetchdata}
+            _active={{ background: "transparent" }}
+            _focus={{ background: "teal" }}
+            icon={<AddIcon />}
+          >
+            Create Document
+          </MenuItem>
         <Link to={"/dashboard/verify"}>
-        <MenuItem _active={{background:"transparent"}} _focus={{background:"teal"}} icon={<InsertLinkIcon />}>
-          Verify Documents
-        </MenuItem></Link>
+          <MenuItem
+            _active={{ background: "transparent" }}
+            _focus={{ background: "teal" }}
+            icon={<InsertLinkIcon />}
+          >
+            Verify Documents
+          </MenuItem>
+        </Link>
       </MenuList>
     </Menu>
   );

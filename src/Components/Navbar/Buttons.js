@@ -40,8 +40,8 @@ function Buttons() {
                 )}
               </HStack>
             </Show>
-            {token && (<>
-              <ProfilePopover/></>
+            {token && (
+              <ProfilePopover/>
             )}
           </>
         );
