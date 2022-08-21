@@ -20,12 +20,11 @@ export const useFetch = (url,method,body)=>{
                 setData(data);
                 setLoading(false);
             }else{
-                console.log(data.message);
                 setError(data.message);
                 setLoading(false);
             }
         };
         fetchData();
-    },[url]);
-    return [data,isLoading,error];
+    },[url,method,body]);
+    return {data,isLoading,error};
 }

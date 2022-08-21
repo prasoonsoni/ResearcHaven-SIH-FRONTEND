@@ -23,7 +23,7 @@ function Stats(props) {
           </Tr>
         </Thead>
         <Tbody>
-          {props.user[1] && (
+          {props.user["isLoading"] && (
             <Tr>
               <Th colSpan={3}>
                 <Stack>
@@ -33,8 +33,8 @@ function Stats(props) {
               </Th>
             </Tr>
           )}
-          {props.user[0]["user"] &&
-            props.user[0]["user"]["research_papers"].map((paper) => {
+          {props.user["data"]["user"] &&
+            props.user["data"]["user"]["research_papers"].map((paper) => {
               if (paper) {
                 return (
                   <Tr key={paper}>
