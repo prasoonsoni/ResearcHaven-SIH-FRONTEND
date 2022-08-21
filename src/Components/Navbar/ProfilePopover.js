@@ -12,6 +12,7 @@ import {
   Avatar,
   Text,
   Box,
+  DarkMode,
 } from "@chakra-ui/react";
 import Profile from "./Profile";
 import { useState, useEffect } from "react";
@@ -55,6 +56,7 @@ function ProfilePopover() {
   } else if (token) {
     return (
       <Box>
+        <DarkMode>
         <Popover _focus={{ outline: "none" }}>
         <Button mr={4} onClick={(open)=>{navigate('/')}}>Go To Dashboard</Button>
           <PopoverTrigger
@@ -108,6 +110,7 @@ function ProfilePopover() {
             </PopoverContent>
           </Portal>
         </Popover>
+        </DarkMode>
       </Box>
     );
   }
