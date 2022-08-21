@@ -6,16 +6,18 @@ import {
   PopoverHeader,
   PopoverBody,
   PopoverArrow,
+  PopoverCloseButton,
   Portal,
   Button,
   Avatar,
   Text,
+  Box,
 } from "@chakra-ui/react";
 import Profile from "./Profile";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UserSkeleton from "./UserSkeleton";
-import {useToken} from '../Hooks/useToken';
+import { useToken } from "../Hooks/useToken";
 function ProfilePopover() {
   const navigate = useNavigate();
   const [first, setFirst] = useState("");
@@ -52,12 +54,17 @@ function ProfilePopover() {
     return <UserSkeleton />;
   } else if (token) {
     return (
-      <>
+      <Box>
         <Popover _focus={{ outline: "none" }}>
-          <PopoverTrigger boxShadow="none" bg="none" _hover={{ bg: "none", outline: "none",boxShadow: "none" }}>
+        <Button mr={4} onClick={(open)=>{navigate('/')}}>Go To Dashboard</Button>
+          <PopoverTrigger
+            boxShadow="none"
+            bg="none"
+            _hover={{ bg: "none", outline: "none", boxShadow: "none" }}
+          >
             <Button
-            _hover={{background:"none"}}
-            _focus={{ bg: "none", outline: "none",boxShadow:"none" }}
+              _hover={{ background: "none" }}
+              _focus={{ bg: "none", outline: "none", boxShadow: "none" }}
               bg="none"
               h="100%"
               p={2}
@@ -65,12 +72,10 @@ function ProfilePopover() {
               <Profile first={first} last={last} />
             </Button>
           </PopoverTrigger>
-          <Portal
-            h="100%"
-            bg="none"
-            p={2}>
-            <PopoverContent _focus={{outline: "none",boxShadow:"none" }}>
+          <Portal h="100%" bg="none" p={2}>
+            <PopoverContent _focus={{ outline: "none", boxShadow: "none" }}>
               <PopoverArrow />
+              <PopoverCloseButton />
               <PopoverHeader
                 h="250px"
                 display="flex"
@@ -86,9 +91,12 @@ function ProfilePopover() {
                 </Text>
                 <Text>{email}</Text>
               </PopoverHeader>
-              <PopoverBody>
+              <PopoverBody display="flex"
+                alignItems="center"
+                justifyContent="center">
+
                 <Button
-                  w="100%"
+                w="100%"
                   onClick={() => {
                     sessionStorage.clear();
                     navigate("/");
@@ -100,7 +108,7 @@ function ProfilePopover() {
             </PopoverContent>
           </Portal>
         </Popover>
-      </>
+      </Box>
     );
   }
 }
