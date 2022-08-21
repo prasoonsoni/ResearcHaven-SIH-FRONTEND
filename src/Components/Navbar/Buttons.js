@@ -22,7 +22,7 @@ function Buttons() {
                         props.setShowRegForm(false);
                       }}
                       mr={2}
-                      colorScheme="button"
+                      colorScheme="red"
                     >
                       Login
                     </Button>
