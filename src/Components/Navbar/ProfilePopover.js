@@ -38,7 +38,6 @@ function ProfilePopover() {
       let data = await response.json();
       if (data.success) {
         sessionStorage.setItem("userObj", data);
-        console.log("userObj");
         setFirst(data.user.first_name);
         setLast(data.user.last_name);
         setEmail(data.user.email);
@@ -55,25 +54,22 @@ function ProfilePopover() {
     return (
       <>
         <Popover _focus={{ outline: "none" }}>
-          <PopoverTrigger>
+          <PopoverTrigger boxShadow="none" bg="none" _hover={{ bg: "none", outline: "none",boxShadow: "none" }}>
             <Button
-              _hover={{ bg: "none", outline: "none" }}
+            _hover={{background:"none"}}
+            _focus={{ bg: "none", outline: "none",boxShadow:"none" }}
               bg="none"
               h="100%"
               p={2}
-              outline="none"
             >
               <Profile first={first} last={last} />
             </Button>
           </PopoverTrigger>
           <Portal
-            _hover={{ bg: "none", outline: "none" }}
-            bg="none"
             h="100%"
-            p={2}
-            outline="none"
-          >
-            <PopoverContent>
+            bg="none"
+            p={2}>
+            <PopoverContent _focus={{outline: "none",boxShadow:"none" }}>
               <PopoverArrow />
               <PopoverHeader
                 h="250px"
