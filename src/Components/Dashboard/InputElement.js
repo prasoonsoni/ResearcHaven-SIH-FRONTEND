@@ -63,13 +63,6 @@ function InputElement(props) {
   const handleSaveField = () => {
     newDoc[inputValRef.current.name] = inputValRef.current.value;
     props.setDocument(newDoc);
-    // toast({
-    //   title: "Successful",
-    //   description: "Field Saved!",
-    //   status: "success",
-    //   duration: 1000,
-    //   isClosable: true,
-    // });
   };
   const handleSelectChange = () => {
     setValue2(selectRef.current.value);
@@ -97,7 +90,7 @@ function InputElement(props) {
         position: "top-right",
         marginTop: "2rem",
       });
-      setIsSaving(false);
+      setIsDeleting(false);
       navigate('/');
     } else {
       toast({
@@ -114,6 +107,7 @@ function InputElement(props) {
 
   return (
     <>
+      {/* SAVE , DELETE AND MANAGE BUTTONS FOR DOCUMENTS */}
       <Flex
         m={8}
         w="100%"
@@ -122,6 +116,7 @@ function InputElement(props) {
         wrap={{ base: "wrap", md: "no-wrap", lg: "no-wrap" }}
       >
         <Button
+        w="300px"
           mb={8}
           isLoading={isSaving}
           loadingText="Saving"
@@ -138,7 +133,8 @@ function InputElement(props) {
             S
           </Kbd>
         </Button>
-        <Button 
+        <Button
+        w="300px" 
         mb={8} 
         colorScheme="red" 
         ml={4}
@@ -152,6 +148,7 @@ function InputElement(props) {
           </Kbd>
         </Button>
         <Button
+        w="300px"
           mb={8}
           colorScheme="messenger"
           ml={4}
@@ -170,7 +167,9 @@ function InputElement(props) {
           </Kbd>
         </Button>
       </Flex>
+
       <Flex mb={4} align="center" justify="space-between" w="100%">
+        {/* PREVIOUS HEADING */}
         <Button
           isDisabled={!props.headerNum}
           onClick={() => {
@@ -181,6 +180,8 @@ function InputElement(props) {
           <ArrowBackIcon />
           Previous
         </Button>
+
+        {/* OPTIONS MENU FOR HEADING */}
         <Select
           w="50%"
           textAlign="center"
@@ -190,22 +191,26 @@ function InputElement(props) {
         >
           {props.headers.map((title, index) => {
             return (
-              <option textAlign="center" key={index} value={title}>
+              <option key={index} value={title}>
                 {title.toUpperCase().split("_").join(" ")}
               </option>
             );
           })}
         </Select>
+
+        {/* NEXT HEADING */}
         <Button
           display={props.headerNum !== props.headers.length - 1 ? "" : "none"}
           onClick={() => {
-            handleSaveField();
             props.setHeaderNum(props.headerNum + 1);
+            handleSaveField();
           }}
         >
           Next
           <ArrowForwardIcon />
         </Button>
+
+        {/* SAVE ON LAST HEADING */}
         <Button
           colorScheme="green"
           display={props.headerNum === props.headers.length - 1 ? "" : "none"}
@@ -216,6 +221,8 @@ function InputElement(props) {
           Save Document
         </Button>
       </Flex>
+
+      {/* MAIN TEXT AREA */}
       <Textarea
         ref={inputValRef}
         onFocus={(e) =>
@@ -231,16 +238,15 @@ function InputElement(props) {
         onChange={handleInputChange}
         size="lg"
         resize="none"
-        variant="filled"
+        variant="outlined"
         autoFocus={true}
-        _focus={{ outline: "none", boxShadow: "none" }}
+        _focus={{ outline: "none", boxShadow: "none",border:"none" }}
         boxShadow="none"
         h="50%"
         p={8}
       />
-      {/* <Button colorScheme="teal" onClick={handleSaveField} mt={8} mb={8}>
-        Save this field
-      </Button> */}
+
+      {/* ALERT FOR USER */}
       <Alert
         mt={8}
         mb={8}
