@@ -121,7 +121,7 @@ function Register(props) {
         alignItems="center"
         justifyContent="center"
       >
-        <Text fontSize="5xl" fontFamily="Poppins" mb={2}>
+        <Text fontSize="4xl" fontFamily="Poppins" mt={2}>
           Register
         </Text>
         <Flex
@@ -236,7 +236,7 @@ function Register(props) {
           type="submit"
           onClick={handleSubmit}
         >
-          Submit
+          Register
         </Button>
       </Flex>
     </Show>

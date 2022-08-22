@@ -15,9 +15,9 @@ import {
   CloseButton,
   Show,
   InputRightElement,
-  InputGroup
+  InputGroup,
+  ButtonGroup
 } from "@chakra-ui/react";
-import ListItem from "./ListItem";
 import { useNavigate } from "react-router-dom";
 
 function Login(props) {
@@ -106,8 +106,8 @@ function Login(props) {
         alignItems="center"
         justifyContent="center"
       >
-        <Text fontSize="5xl" fontFamily="Poppins" mb={8} mt={8}>
-          Login
+        <Text fontSize="4xl" fontFamily="Poppins" mt={2}>
+          Login 
         </Text>
         <Flex
           p={4}
@@ -156,18 +156,19 @@ function Login(props) {
             </InputGroup>
           </FormControl>
         </Flex>
-        <Button
-          colorScheme='blue'
-          mr={3}
-          fontStyle='bold'
-          // _hover={{ backgroundColor: "#2096B6" }}
-          isLoading={isLoading}
-          loadingText="Logging In..."
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Submit
-        </Button>
+        <ButtonGroup>
+          <Button
+            colorScheme='blue'
+            mr={3}
+            fontStyle='extra-bold'
+            isLoading={isLoading}
+            loadingText="Logging In..."
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Login
+          </Button>
+        </ButtonGroup>
         {!isVerified && (
           <Alert fontSize="12px" w="100%" m={4} status="error">
             <AlertIcon />
@@ -196,10 +197,6 @@ function Login(props) {
             />
           </Alert>
         )}
-        <Box w="100%">
-          <ListItem detail="Become a verified user today to get amazing perks!" />
-          <ListItem detail="Match your research paper with our own semantic matching plagiarism checker." />
-        </Box>
       </Flex>
     </Show>
   );

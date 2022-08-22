@@ -97,9 +97,9 @@ function Intro() {
                     </ModalBody>
 
                     <ModalFooter>
-                      <Button colorScheme="blue" mr={3} onClick={onLoginClose}>
+                      {/* <Button colorScheme="blue" mr={3} onClick={onLoginClose}>
                         Close
-                      </Button>
+                      </Button> */}
                     </ModalFooter>
                   </ModalContent>
                 </Modal>
@@ -127,13 +127,13 @@ function Intro() {
                     </ModalBody>
 
                     <ModalFooter>
-                      <Button
+                      {/* <Button
                         colorScheme="blue"
                         mr={3}
                         onClick={onRegisterClose}
                       >
                         Close
-                      </Button>
+                      </Button> */}
                     </ModalFooter>
                   </ModalContent>
                 </Modal>

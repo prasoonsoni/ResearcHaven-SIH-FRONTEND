@@ -31,6 +31,8 @@ function Buttons() {
     onClose: onRegisterClose,
   } = useDisclosure();
 
+  
+
   return (
     <UserConsumer>
       {(props) => {
@@ -58,9 +60,7 @@ function Buttons() {
                         </ModalBody>
 
                         <ModalFooter>
-                          <Button mr={3} onClick={onLoginClose}>
-                            Close
-                          </Button>
+                        
                         </ModalFooter>
                       </ModalContent>
                     </Modal>
@@ -87,12 +87,7 @@ function Buttons() {
                         </ModalBody>
 
                         <ModalFooter>
-                          <Button
-                            mr={3}
-                            onClick={onRegisterClose}
-                          >
-                            Close
-                          </Button>
+                          
                         </ModalFooter>
                       </ModalContent>
                     </Modal>
