@@ -14,14 +14,18 @@ import {
   Box,
   CloseButton,
   Show,
+  InputRightElement,
+  InputGroup
 } from "@chakra-ui/react";
 import ListItem from "./ListItem";
 import { useNavigate } from "react-router-dom";
+
 function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isVerified, setIsVerified] = useState(true);
+  const [show1, setShow1] = React.useState(false)
   const toast = useToast();
   const navigate = useNavigate();
   const data = {
@@ -29,6 +33,7 @@ function Login(props) {
     password: "",
   };
   const myData = { ...data };
+  const handleClick1 = () => setShow1(!show1)
 
   // on submitting form
   const handleSubmit = async (event) => {
@@ -106,9 +111,6 @@ function Login(props) {
         </Text>
         <Flex
           p={4}
-          bg="#D9D9D9"
-          borderRadius="1.2rem"
-          boxShadow={"inset -5px -5px 5px 0 grey"}
           w={props.width}
           direction="column"
           alignItems="center"
@@ -116,7 +118,7 @@ function Login(props) {
           zIndex="0"
         >
           <FormControl isRequired>
-            <FormLabel color="black">Email address</FormLabel>
+            <FormLabel color="white">Email address</FormLabel>
             <Input
               name="email"
               fontFamily="Roboto"
@@ -132,26 +134,33 @@ function Login(props) {
             />
           </FormControl>
           <FormControl mt={4} mb={4} isRequired>
-            <FormLabel color="black">Password</FormLabel>
-            <Input
-              name="password"
-              fontFamily="Roboto"
-              bg="white"
-              color="black"
-              _focus={{ color: "black" }}
-              value={password}
-              placeholder="Enter your password"
-              _placeholder={{ color: "grey" }}
-              type="password"
-              onChange={handleChange}
-            />
+            <FormLabel color="white">Password</FormLabel>
+            <InputGroup size='md'>
+              <Input
+                name="password"
+                fontFamily="Roboto"
+                bg="white"
+                color="black"
+                _focus={{ color: "black" }}
+                value={password}
+                placeholder="Enter your password"
+                _placeholder={{ color: "grey" }}
+                type={show1 ? 'text' : 'password'}
+                onChange={handleChange}
+              />
+              <InputRightElement width='4.5rem'>
+                <Button h='1.75rem' size='sm' onClick={handleClick1} color='black' bg="#EDF2F7" _hover={{ backgroundColor: "" }}>
+                  {show1 ? 'Hide' : 'Show'}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
           </FormControl>
         </Flex>
         <Button
-          mt={4}
-          bg="#395B64"
-          color="white"
-          _hover={{ backgroundColor: "#2096B6" }}
+          colorScheme='blue'
+          mr={3}
+          fontStyle='bold'
+          // _hover={{ backgroundColor: "#2096B6" }}
           isLoading={isLoading}
           loadingText="Logging In..."
           type="submit"
@@ -178,6 +187,9 @@ function Login(props) {
               position="relative"
               right={-1}
               top={-1}
+              colorScheme='blue'
+              mr={3}
+              fontStyle='bold'
               onClick={() => {
                 setTimeout(setIsVerified(!isVerified), 2000);
               }}
