@@ -14,6 +14,7 @@ function InputElement(props) {
   const [isSaving, setIsSaving] = useState(false);
   const handleInputChange = (e) => {
     setValue(e.target.value);
+    handleSaveField()
   };
   const handleSave = async () => {
     setIsSaving(true);
@@ -30,11 +31,12 @@ function InputElement(props) {
     let data = await response.json();
     if (data.success) {
       toast({
-        title: "Successful",
-        description: data.message,
+        title: data.message,
         status: "success",
         duration: 1500,
         isClosable: true,
+        position: "top-right",
+        marginTop:"2rem"
       });
       setIsSaving(false);
     } else {
@@ -51,17 +53,16 @@ function InputElement(props) {
   const handleSaveField = () => {
     newDoc[inputValRef.current.name] = inputValRef.current.value;
     props.setDocument(newDoc);
-    toast({
-      title: "Successful",
-      description: "Field Saved!",
-      status: "success",
-      duration: 1000,
-      isClosable: true,
-    });
+    // toast({
+    //   title: "Successful",
+    //   description: "Field Saved!",
+    //   status: "success",
+    //   duration: 1000,
+    //   isClosable: true,
+    // });
   };
   useEffect(()=>{
   })
-  useKey("Enter",handleSave);
   return (
     <>
       <Flex m={8} w="100%" align="center" justify="center" wrap="wrap">
@@ -72,13 +73,13 @@ function InputElement(props) {
           onClick={handleSave}
           colorScheme="facebook"
         >
-          <SaveOutlinedIcon/>Save Document <Kbd ml={2} color="white" bg="#171717">ctrl</Kbd>+<Kbd color="white" bg="#171717">S</Kbd>
+          <SaveOutlinedIcon/>&nbsp;Save Document <Kbd ml={2} color="white" bg="#171717">ctrl</Kbd>+<Kbd color="white" bg="#171717">S</Kbd>
         </Button>
         <Button mb={8} colorScheme="red" ml={4}>
-        <DeleteIcon/>Delete Document <Kbd ml={2} color="white" bg="#171717">del</Kbd>
+        <DeleteIcon/>&nbsp;Delete Document <Kbd ml={2} color="white" bg="#171717">del</Kbd>
         </Button>
         <Button mb={8} colorScheme="messenger" ml={4}>
-          <ExternalLinkIcon/>Manage Documents <Kbd ml={2} color="white" bg="#171717">ctrl</Kbd>+<Kbd color="white" bg="#171717">M</Kbd>
+          <ExternalLinkIcon/>&nbsp;Manage Documents <Kbd ml={2} color="white" bg="#171717">ctrl</Kbd>+<Kbd color="white" bg="#171717">M</Kbd>
         </Button>
       </Flex>
       <Flex mb={4} align="center" justify="space-between" w="100%">
