@@ -1,21 +1,22 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Textarea, Button, useToast, Flex, Text } from "@chakra-ui/react";
 import { Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
+import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
+import { ArrowBackIcon, ArrowForwardIcon, DeleteIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import { Kbd } from '@chakra-ui/react'
 function InputElement(props) {
-  let [value, setValue] = React.useState(props.value?props.value:"");
+  console.log(props.value);
+  const [value, setValue] = React.useState(props.value);
   const newDoc = { ...props.document };
   const toast = useToast();
   const inputValRef = useRef(null);
+  const [isSaving, setIsSaving] = useState(false);
   window.onbeforeunload = ()=>{ 
-    return handleSave();
+    return "Please review changes";
   }
   const handleInputChange = (e) => {
-    setValue(inputValRef.current.value);
-    // newDoc[inputValRef.current.name] = inputValRef.current.value;
-    // props.setDocument(newDoc);
+    setValue(e.target.value);
   };
-  const [isSaving, setIsSaving] = useState(false);
   const handleSave = async () => {
     setIsSaving(true);
     let url =
@@ -60,6 +61,11 @@ function InputElement(props) {
       isClosable: true,
     });
   };
+  useEffect(()=>{
+    if(!value){
+      setValue(newDoc[props.name])
+    }
+  },[newDoc,setValue])
   return (
     <>
       <Flex direction={{base:"column",md:"column",lg:"row"}} m={8} w="100%" align="center" justify="center">
@@ -70,35 +76,39 @@ function InputElement(props) {
           onClick={handleSave}
           colorScheme="facebook"
         >
-          Save Document <Kbd ml={2} color="white" bg="#171717">ctrl</Kbd>+<Kbd color="white" bg="#171717">S</Kbd>
+          <SaveOutlinedIcon/>Save Document <Kbd ml={2} color="white" bg="#171717">ctrl</Kbd>+<Kbd color="white" bg="#171717">S</Kbd>
         </Button>
         <Button mb={8} colorScheme="red" ml={4}>
-          Delete this Document <Kbd ml={2} color="white" bg="#171717">del</Kbd>
+        <DeleteIcon/>Delete Document <Kbd ml={2} color="white" bg="#171717">del</Kbd>
         </Button>
         <Button mb={8} colorScheme="messenger" ml={4}>
-          Manage Other Documents <Kbd ml={2} color="white" bg="#171717">ctrl</Kbd>+<Kbd color="white" bg="#171717">M</Kbd>
+          <ExternalLinkIcon/>Manage Documents <Kbd ml={2} color="white" bg="#171717">ctrl</Kbd>+<Kbd color="white" bg="#171717">M</Kbd>
         </Button>
       </Flex>
-      <Flex mb={4} direction={{base:"column",md:"row"}}align="center" justify="space-between" w="100%">
+      <Flex mb={4} align="center" justify="space-between" w="100%">
         <Button
           isDisabled={!props.headerNum}
           onClick={() => {
+            handleSaveField();
             props.setHeaderNum(props.headerNum - 1);
           }}
         >
-          Previous
+          <ArrowBackIcon/>Previous
         </Button>
         <Text fontSize="1.2rem" textAlign="center">
           {props.headers[props.headerNum].toUpperCase().split("_").join(" ")}
         </Text>
         <Button
-          isDisabled={props.headerNum === props.headers.length - 1}
+          display={props.headerNum!==props.headers.length-1?"":"none"}
           onClick={() => {
             handleSaveField();
             props.setHeaderNum(props.headerNum + 1);
           }}
         >
-          Next
+          Next<ArrowForwardIcon/>
+        </Button>
+        <Button colorScheme="green" display={props.headerNum===props.headers.length-1?"":"none"} onClick={handleSave} isLoading={isSaving} loadingText="Saving...">
+        Save Document
         </Button>
       </Flex>
       <Textarea
@@ -112,7 +122,7 @@ function InputElement(props) {
         name={props.name}
         textAlign="left"
         value={value}
-        placeholder={value?value:"Nothing to show yet"}
+        placeholder={props.value?value:"Nothing to show yet"}
         onChange={handleInputChange}
         size="lg"
         resize="none"
@@ -134,9 +144,8 @@ function InputElement(props) {
         align="center"
         justify="center"
       >
-        <AlertDescription mb={8} w="100%" direction="row">
-          <AlertIcon mt={4}/>
-          You cannot undo the action of saving the field!
+        <AlertDescription w="100%" display="flex" direction="row">
+        <AlertIcon />You cannot undo the action of saving the field!
         </AlertDescription>
       </Alert>
     </>

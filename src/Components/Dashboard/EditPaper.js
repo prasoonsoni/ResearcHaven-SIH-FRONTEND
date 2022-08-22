@@ -45,7 +45,7 @@ function EditPaper() {
     }
   }, [data]);
   return (
-    <Flex direction={{md:"column",lg:"row"}} w="100vw" align="center" justify="center">
+    <Flex direction={{base:"",md:"column",lg:"row"}} w="100vw" align="center" justify="center">
       <Flex h="80vh" w="55%" align="center" justify="center" direction="column">
         {/* if still fetching data from api*/}
         {(isLoading || error) && <Skeleton height="40px" w="100%" m={4} />}
@@ -53,7 +53,7 @@ function EditPaper() {
         {!isLoading && !error && data.data && (
           <>
             <InputElement
-              key={document[headers[headerNum]]}
+              key={headerNum}
               id={id}
               name={headers[headerNum]}
               value={document[headers[headerNum]]}
