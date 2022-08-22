@@ -13,6 +13,7 @@ import {
   useDisclosure
 } from "@chakra-ui/react";
 import Login from "../Home/Login"
+import Register from "../Home/Register"
 
 
 function Buttons() {
@@ -38,6 +39,7 @@ function Buttons() {
               <HStack>
                 {!token && !location.pathname.match('/dashboard+/') && (
                   <>
+                    {/* Login button */}
                     <Button
                       onClick={onLoginOpen}
                       mr={2}
@@ -54,22 +56,45 @@ function Buttons() {
                         </ModalBody>
 
                         <ModalFooter>
-                          <Button colorScheme="blue" mr={3} onClick={onLoginClose}>
+                          <Button mr={3} onClick={onLoginClose}>
                             Close
                           </Button>
                         </ModalFooter>
                       </ModalContent>
                     </Modal>
+
+                    {/* Register button */}
                     <Button
-                      onClick={() => {
-                        props.setShowLoginForm(false);
-                        props.setShowRegForm(true);
-                      }}
-                      colorScheme="blue"
-                      variant="solid"
+                      mr={2}
+                      onClick={onRegisterOpen}
+                      colorScheme="messenger"
                     >
                       Register
                     </Button>
+                    <Modal
+                      bg="#000"
+                      w="100%"
+                      isOpen={isRegisterOpen}
+                      onClose={onRegisterClose}
+                    >
+                      <ModalOverlay />
+                      <ModalContent bg="#171717">
+                        <ModalCloseButton />
+                        <ModalBody>
+                          <Register show="" width="100%" />
+                        </ModalBody>
+
+                        <ModalFooter>
+                          <Button
+                            mr={3}
+                            onClick={onRegisterClose}
+                          >
+                            Close
+                          </Button>
+                        </ModalFooter>
+                      </ModalContent>
+                    </Modal>
+
                   </>
                 )}
               </HStack>

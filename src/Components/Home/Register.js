@@ -8,6 +8,8 @@ import {
   Show,
   Text,
   useToast,
+  InputRightElement,
+  InputGroup
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 
@@ -18,7 +20,14 @@ function Register(props) {
   const [email, setEmail] = React.useState("");
   const [pass, setPass] = React.useState("");
   const [cpass, setCpass] = React.useState("");
+  const [show, setShow] = React.useState(false)
+  const [show1, setShow1] = React.useState(false)
+
   const toast = useToast();
+
+  const handleClick = () => setShow(!show)
+  const handleClick1 = () => setShow1(!show1)
+
 
   const data = {
     first_name: "",
@@ -117,10 +126,10 @@ function Register(props) {
         </Text>
         <Flex
           p={4}
-          bg="#D9D9D9"
-          borderRadius="1rem"
-          border="2px"
-          borderColor="white"
+          // bg="#D9D9D9"
+          // borderRadius="1rem"
+          // border="2px"
+          // borderColor="white"
           w={props.width}
           direction="column"
           // alignItems="center"
@@ -128,7 +137,7 @@ function Register(props) {
         >
           <form onSubmit={handleSubmit}>
             <FormControl isRequired>
-              <FormLabel color="black">First name</FormLabel>
+              <FormLabel color="white">First name</FormLabel>
               <Input
                 name="first"
                 fontFamily="Roboto"
@@ -143,7 +152,7 @@ function Register(props) {
             </FormControl>
 
             <FormControl mt={4} isRequired>
-              <FormLabel color="black">Last name</FormLabel>
+              <FormLabel color="white">Last name</FormLabel>
               <Input
                 name="last"
                 fontFamily="Roboto"
@@ -158,7 +167,7 @@ function Register(props) {
             </FormControl>
 
             <FormControl mt={4} isRequired>
-              <FormLabel color="black">Email address</FormLabel>
+              <FormLabel color="white">Email address</FormLabel>
               <Input
                 name="email"
                 fontFamily="Roboto"
@@ -177,44 +186,57 @@ function Register(props) {
             </FormControl>
 
             <FormControl mt={4} isRequired>
-              <FormLabel color="black">Password</FormLabel>
-              <Input
-                name="pass"
-                fontFamily="Roboto"
-                bg="white"
-                color="black"
-                _focus={{ color: "black" }}
-                value={pass}
-                onChange={handleChange}
-                placeholder="Enter your password"
-                _placeholder={{ color: "grey" }}
-                type="password"
-              />
+              <FormLabel color="white">Password</FormLabel>
+              <InputGroup size='md'>
+                <Input
+                  name="pass"
+                  fontFamily="Roboto"
+                  bg="white"
+                  color="black"
+                  _focus={{ color: "black" }}
+                  value={pass}
+                  onChange={handleChange}
+                  placeholder="Enter your password"
+                  _placeholder={{ color: "grey" }}
+                  type={show1 ? 'text' : 'password'}
+                />
+                <InputRightElement width='4.5rem'>
+                  <Button h='1.75rem' size='sm' onClick={handleClick1} color='black' bg="#EDF2F7" _hover={{ backgroundColor: "" }}>
+                    {show1 ? 'Hide' : 'Show'}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
             </FormControl>
 
             <FormControl mt={4} isRequired>
-              <FormLabel color="black">Confirm Password</FormLabel>
-              <Input
-                name="cpass"
-                fontFamily="Roboto"
-                bg="white"
-                color="black"
-                _focus={{ color: "black" }}
-                value={cpass}
-                onChange={handleChange}
-                placeholder="Re-enter your password"
-                _placeholder={{ color: "grey" }}
-                type="password"
-              />
+              <FormLabel color="white">Confirm Password</FormLabel>
+              <InputGroup size='md'>
+                <Input
+                  name="cpass"
+                  fontFamily="Roboto"
+                  bg="white"
+                  color="black"
+                  _focus={{ color: "black" }}
+                  value={cpass}
+                  onChange={handleChange}
+                  placeholder="Re-enter your password"
+                  _placeholder={{ color: "grey" }}
+                  type={show ? 'text' : 'password'}
+                />
+                <InputRightElement width='4.5rem'>
+                  <Button h='1.75rem' size='sm' onClick={handleClick} color='black' bg="#EDF2F7" _hover={{ backgroundColor: "" }}>
+                    {show ? 'Hide' : 'Show'}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
             </FormControl>
           </form>
         </Flex>
         <Button
           mt={4}
           mb={4}
-          bg="#395B64"
-          color="white"
-          _hover={{ backgroundColor: "#2096B6" }}
+          colorScheme="blue"
+          color="black"
           isLoading={isSubmitting}
           type="submit"
           onClick={handleSubmit}
