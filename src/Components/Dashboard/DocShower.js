@@ -15,7 +15,7 @@ function DocShower(props) {
   return (
     <>
       {props.isLoading && (
-        <Skeleton height="70vh" w="100%" m={4} borderRadius="10px" />
+        <Skeleton height="80vh" w="100%" m={4} borderRadius="10px" />
       )}
       {!props.isLoading && (
         <Box
