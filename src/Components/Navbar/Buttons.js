@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import Login from "../Home/Login"
 import Register from "../Home/Register"
+import NavLinks from "./NavLinks";
 
 
 function Buttons() {
@@ -36,7 +37,8 @@ function Buttons() {
         return (
           <>
             <Show above="md">
-              <HStack>
+              <HStack spacing={5}>
+                <NavLinks />
                 {!token && !location.pathname.match('/dashboard+/') && (
                   <>
                     {/* Login button */}

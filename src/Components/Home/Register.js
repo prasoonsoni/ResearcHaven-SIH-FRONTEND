@@ -126,13 +126,8 @@ function Register(props) {
         </Text>
         <Flex
           p={4}
-          // bg="#D9D9D9"
-          // borderRadius="1rem"
-          // border="2px"
-          // borderColor="white"
           w={props.width}
           direction="column"
-          // alignItems="center"
           justifyContent="center"
         >
           <form onSubmit={handleSubmit}>

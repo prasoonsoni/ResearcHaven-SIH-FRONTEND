@@ -3,16 +3,15 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:1rem;
+    gap:3rem;
 }
 
 .nav-ul{
     list-style-type: none;
     display:flex;
-    gap:8rem;
+    gap:4rem;
     height:fit-content;
     margin:0;
-    position:absolute;
     transition:0.3s all ease-in-out;
 }
 
