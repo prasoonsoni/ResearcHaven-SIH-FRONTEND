@@ -3,17 +3,15 @@ import { Textarea, Button, useToast, Flex, Text } from "@chakra-ui/react";
 import { Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import { ArrowBackIcon, ArrowForwardIcon, DeleteIcon, ExternalLinkIcon } from '@chakra-ui/icons'
+import useKey from '../Hooks/useKey';
+
 import { Kbd } from '@chakra-ui/react'
 function InputElement(props) {
-  console.log(props.value);
   const [value, setValue] = React.useState(props.value);
   const newDoc = { ...props.document };
   const toast = useToast();
   const inputValRef = useRef(null);
   const [isSaving, setIsSaving] = useState(false);
-  window.onbeforeunload = ()=>{ 
-    return "Please review changes";
-  }
   const handleInputChange = (e) => {
     setValue(e.target.value);
   };
@@ -62,13 +60,11 @@ function InputElement(props) {
     });
   };
   useEffect(()=>{
-    if(!value){
-      setValue(newDoc[props.name])
-    }
-  },[newDoc,setValue])
+  })
+  useKey("Enter",handleSave);
   return (
     <>
-      <Flex direction={{base:"column",md:"column",lg:"row"}} m={8} w="100%" align="center" justify="center">
+      <Flex m={8} w="100%" align="center" justify="center" wrap="wrap">
         <Button
         mb={8}
           isLoading={isSaving}
