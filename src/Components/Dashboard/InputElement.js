@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Textarea, Button, useToast, Flex, Text } from "@chakra-ui/react";
 import { Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
 import { Kbd } from '@chakra-ui/react'
@@ -62,8 +62,9 @@ function InputElement(props) {
   };
   return (
     <>
-      <Flex m={8} w="100%" align="center" justify="center">
+      <Flex direction={{base:"column",md:"column",lg:"row"}} m={8} w="100%" align="center" justify="center">
         <Button
+        mb={8}
           isLoading={isSaving}
           loadingText="Saving..."
           onClick={handleSave}
@@ -71,14 +72,14 @@ function InputElement(props) {
         >
           Save Document <Kbd ml={2} color="white" bg="#171717">ctrl</Kbd>+<Kbd color="white" bg="#171717">S</Kbd>
         </Button>
-        <Button colorScheme="red" ml={4}>
+        <Button mb={8} colorScheme="red" ml={4}>
           Delete this Document <Kbd ml={2} color="white" bg="#171717">del</Kbd>
         </Button>
-        <Button colorScheme="messenger" ml={4}>
+        <Button mb={8} colorScheme="messenger" ml={4}>
           Manage Other Documents <Kbd ml={2} color="white" bg="#171717">ctrl</Kbd>+<Kbd color="white" bg="#171717">M</Kbd>
         </Button>
       </Flex>
-      <Flex mb={4} align="center" justify="space-between" w="100%">
+      <Flex mb={4} direction={{base:"column",md:"row"}}align="center" justify="space-between" w="100%">
         <Button
           isDisabled={!props.headerNum}
           onClick={() => {
@@ -127,13 +128,14 @@ function InputElement(props) {
       </Button> */}
       <Alert
         mt={8}
+        mb={8}
         status="warning"
         display="flex"
         align="center"
         justify="center"
       >
-        <AlertDescription w="100%" direction="row">
-          <AlertIcon />
+        <AlertDescription mb={8} w="100%" direction="row">
+          <AlertIcon mt={4}/>
           You cannot undo the action of saving the field!
         </AlertDescription>
       </Alert>
