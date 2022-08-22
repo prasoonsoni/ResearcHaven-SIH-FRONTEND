@@ -1,4 +1,4 @@
-import { Button, Flex, Skeleton, Text, useToast } from "@chakra-ui/react";
+import { Flex, Skeleton } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import InputElement from "./InputElement";
@@ -37,41 +37,6 @@ function EditPaper() {
     "conclusion",
     "references",
   ];
-  const toast = useToast();
-  const [isSaving, setIsSaving] = useState(false);
-  const handleSave = async () => {
-    setIsSaving(true);
-    let url =
-      "https://webcrawlers-sih.vercel.app/api/researchpaper/update/" + id;
-    let response = await fetch(url, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token": sessionStorage.getItem("token"),
-      },
-      body: JSON.stringify(document),
-    });
-    let data = await response.json();
-    if (data.success) {
-      toast({
-        title: "Successful",
-        description: data.message,
-        status: "success",
-        duration: 1500,
-        isClosable: true,
-      });
-      setIsSaving(false);
-    } else {
-      toast({
-        title: "Error",
-        description: data.message,
-        status: "error",
-        duration: 1500,
-        isClosable: true,
-      });
-      setIsSaving(false);
-    }
-  };
   let url = "https://webcrawlers-sih.vercel.app/api/researchpaper/draft/" + id;
   const { data, isLoading, error } = useFetch(url);
   useEffect(() => {
@@ -81,49 +46,12 @@ function EditPaper() {
   }, [data]);
   return (
     <Flex w="100vw" align="center" justify="center">
-      <Flex h="80vh" w="50%" align="center" justify="center" direction="column">
+      <Flex h="80vh" w="55%" align="center" justify="center" direction="column">
         {/* if still fetching data from api*/}
         {(isLoading || error) && <Skeleton height="40px" w="100%" m={4} />}
         {/* after data is fetched without error*/}
         {!isLoading && !error && data.data && (
           <>
-          <Flex m={8} w="100%" align="center" justify="center">
-              <Button
-                isLoading={isSaving}
-                loadingText="Saving..."
-                onClick={handleSave}
-                colorScheme="facebook"
-              >
-                Save Document
-              </Button>
-              <Button colorScheme="red" ml={4}>
-                Delete this Document
-              </Button>
-              <Button colorScheme="messenger" ml={4}>
-                Manage Other Documents
-              </Button>
-            </Flex>
-            <Flex mb={4} align="center" justify="space-between" w="100%">
-              <Button
-                isDisabled={!headerNum}
-                onClick={() => {
-                  setHeaderNum(headerNum - 1);
-                }}
-              >
-                Previous
-              </Button>
-              <Text mb={8} fontSize="1.2rem">
-                {headers[headerNum].toUpperCase().split("_").join(" ")}
-              </Text>
-              <Button
-                isDisabled={headerNum === headers.length - 1}
-                onClick={() => {
-                  setHeaderNum(headerNum + 1);
-                }}
-              >
-                Next
-              </Button>
-            </Flex>
             <InputElement
               key={document[headers[headerNum]]}
               id={id}
@@ -131,6 +59,9 @@ function EditPaper() {
               value={document[headers[headerNum]]}
               document={document}
               setDocument={setDocument}
+              headers={headers}
+              headerNum={headerNum}
+              setHeaderNum={setHeaderNum}
             />
           </>
         )}
