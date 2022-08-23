@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Textarea, Button, useToast, Flex } from "@chakra-ui/react";
-import { Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
+// import { Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import {
   ArrowBackIcon,
@@ -215,7 +215,8 @@ function InputElement(props) {
           display={props.headerNum === props.headers.length - 1 ? "" : "none"}
           onClick={handleSave}
           isLoading={isSaving}
-          loadingText="Saving"
+          spinner={false}
+          loadingText="Saving Document"
         >
           Save Document
         </Button>
@@ -241,12 +242,12 @@ function InputElement(props) {
         autoFocus={true}
         _focus={{ outline: "none", boxShadow: "none",border:"none" }}
         boxShadow="none"
-        h="40vh"
+        h="80vh"
         p={4}
       />
 
       {/* ALERT FOR USER */}
-      <Alert
+      {/* <Alert
         mt={8}
         mb={8}
         status="warning"
@@ -258,7 +259,7 @@ function InputElement(props) {
           <AlertIcon />
           You cannot undo the action of saving the field!
         </AlertDescription>
-      </Alert>
+      </Alert> */}
     </>
   );
 }

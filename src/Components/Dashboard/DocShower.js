@@ -3,13 +3,12 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 
 function DocShower(props) {
-  console.log(props.document);
   const items = props.array.map((header) => {
     return (
       <Box key={header} m={8}>
         {header === "title" && (
           <Text as="div" align="center" fontFamily="Times" fontSize="xl">
-            {props.document[header].toUpperCase().split("_").join(" ")}
+            <ReactMarkdown>{props.document[header].toUpperCase().split("_").join(" ")}</ReactMarkdown>
           </Text>
         )}
         {header !== "title" && (
