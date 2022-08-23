@@ -66,7 +66,8 @@ function Manage() {
           position: "top-right",
         });
         setIsDeleting(false);
-        window.location.reload();
+        setTimeout(()=>{window.location.reload();},500);
+        
       } else {
         toast({
           title: "Error",

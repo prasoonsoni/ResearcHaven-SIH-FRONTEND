@@ -21,7 +21,6 @@ function Dashboard() {
         <Route index element={<Manage/>} />
         <Route exact path="/edit/:id" element={<EditPaper/>} />
         <Route exact path="/verify" element={<Verify/>} />
-        <Route exact path="/manage" element={<Manage/>} />
         <Route path="/*" element={<>This route does not exist :/</>} />
       </Routes>
     </Flex>

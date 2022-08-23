@@ -152,7 +152,7 @@ function InputElement(props) {
           colorScheme="messenger"
           ml={4}
           onClick={() => {
-            navigate("/dashboard/manage");
+            navigate("/dashboard");
           }}
         >
           <ExternalLinkIcon />
