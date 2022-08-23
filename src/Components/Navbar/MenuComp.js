@@ -1,11 +1,10 @@
 import React from "react";
 import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import AddIcon from "@mui/icons-material/Add";
-import InsertLinkIcon from "@mui/icons-material/InsertLink";
 function MenuComp() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const fetchdata = async () => {
     let response = await fetch(
       "https://webcrawlers-sih.vercel.app/api/researchpaper/create",
@@ -22,7 +21,7 @@ function MenuComp() {
       // setId(data["data"].id)
       // console.log(data["data"].id)
       // console.log(id);
-      let path = `/dashboard/edit/${data.data.id}`
+      let path = `/dashboard/edit/${data.data.id}`;
       navigate(path);
     } else {
       console.log(data.message);
@@ -36,24 +35,15 @@ function MenuComp() {
         icon={<MenuIcon _hover={{ cursor: "pointer" }} />}
         variant="outline"
       />
-      <MenuList bg="#171717" >
-          <MenuItem
+      <MenuList bg="#171717">
+        <MenuItem
           onClick={fetchdata}
-            _active={{ background: "transparent" }}
-            _focus={{ background: "teal" }}
-            icon={<AddIcon />}
-          >
-            Create Document
-          </MenuItem>
-        <Link to={"/dashboard/manage"}>
-          <MenuItem
-            _active={{ background: "transparent" }}
-            _focus={{ background: "teal" }}
-            icon={<InsertLinkIcon />}
-          >
-            Manage Your Documents
-          </MenuItem>
-        </Link>
+          _active={{ background: "transparent" }}
+          _focus={{ background: "teal" }}
+          icon={<AddIcon />}
+        >
+          Create Document
+        </MenuItem>
       </MenuList>
     </Menu>
   );

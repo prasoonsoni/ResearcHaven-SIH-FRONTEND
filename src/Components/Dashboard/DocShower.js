@@ -3,6 +3,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 
 function DocShower(props) {
+  console.log(props.document);
   const items = props.array.map((header) => {
     return (
       <Box key={header} m={8}>
