@@ -1,12 +1,8 @@
 import { Flex, Text } from "@chakra-ui/react";
 import React from "react";
-import { useLocation } from 'react-router-dom';
-import MenuComp from './MenuComp';
 function WebCrawlers() {
-  const location = useLocation();
   return (
     <Flex gap={4} alignItems="center">
-      {location.pathname.match('dashboard+') && <MenuComp/>}
       <svg
         width="65"
         height="55"
