@@ -1,14 +1,16 @@
 import { Box, Skeleton, Text } from "@chakra-ui/react";
 import React from "react";
+import ReactMarkdown from 'react-markdown'
 
 function DocShower(props) {
   const items = props.array.map((title) => {
     return (
       <Box key={title} m={8}>
-        <Text fontFamily="Times" as="b" fontSize="2xl">
-          {title.toUpperCase().split("_").join(" ")}
+        <Text as="div" fontFamily="Times" fontSize="2xl">
+        {title.toUpperCase().split("_").join(" ")}
         </Text>
-        <Text fontFamily="Times New Roman" size="xl">{props.document[title]}</Text>
+        <Text as="div" fontFamily="Times New Roman">
+          <ReactMarkdown>{props.document[title]}</ReactMarkdown></Text>
       </Box>
     );
   });
@@ -28,7 +30,7 @@ function DocShower(props) {
           w="40vw"
           overflowY="scroll"
         >
-          <div>{items}</div>
+          <Box>{items}</Box>
         </Box>
       )}
     </>

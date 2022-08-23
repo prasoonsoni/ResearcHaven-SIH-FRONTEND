@@ -11,7 +11,6 @@ import {
 import { Select } from "@chakra-ui/react";
 import { Kbd } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { useFetch } from "../Hooks/useFetch";
 function InputElement(props) {
   const navigate = useNavigate();
   const [value, setValue] = React.useState(props.value);
@@ -242,8 +241,8 @@ function InputElement(props) {
         autoFocus={true}
         _focus={{ outline: "none", boxShadow: "none",border:"none" }}
         boxShadow="none"
-        h="50%"
-        p={8}
+        h="40vh"
+        p={4}
       />
 
       {/* ALERT FOR USER */}
