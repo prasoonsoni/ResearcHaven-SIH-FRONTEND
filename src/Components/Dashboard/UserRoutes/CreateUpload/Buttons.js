@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Flex } from "@chakra-ui/react";
+import { Button, ButtonGroup, Divider, Flex } from "@chakra-ui/react";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import UploadIcon from "@mui/icons-material/Upload";
@@ -32,7 +32,7 @@ function Buttons() {
 //   for uploading the document
 
   return (<>
-    <Flex justify="space-between" align="center">
+    <Flex direction="column">
     <ButtonGroup mb={4} mt={4}>
       <Button
       leftIcon={<AddIcon />}
@@ -50,6 +50,7 @@ function Buttons() {
         UPLOAD YOUR PROPOSAL
       </Button>
     </ButtonGroup>
+    <Divider/>
     </Flex>
     <Outlet/>
     </>

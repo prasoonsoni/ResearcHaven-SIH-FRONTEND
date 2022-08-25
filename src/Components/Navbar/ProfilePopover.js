@@ -67,7 +67,7 @@ function ProfilePopover() {
               <Button
               size="sm"
                 mr={4}
-                colorScheme="yellow"
+                colorScheme="orange"
                 onClick={(open) => {
                   navigate("/");
                 }}

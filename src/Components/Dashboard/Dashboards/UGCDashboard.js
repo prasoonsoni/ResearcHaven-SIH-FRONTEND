@@ -1,9 +1,15 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import FundedProposals from '../AdminRoutes/FundedProposals';
 import ShowPapers from  '../AdminRoutes/ShowPapers';
 import SubmittedProposals from '../AdminRoutes/SubmittedProposals';
 function UGCDashboard() {
+  const navigate = new useNavigate();
+  useEffect(()=>{
+    if(sessionStorage.getItem('type')!=="admin"){
+      navigate("/");
+    }
+  })
   return (
 
     <Routes>
