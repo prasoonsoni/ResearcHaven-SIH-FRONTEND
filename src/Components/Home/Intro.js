@@ -9,7 +9,7 @@ import {
 import { UserConsumer } from "../Contexts/userContext";
 import React from "react";
 import SihLogo from "./SihLogo";
-import WebCrawler from "./WebCrawler";
+import ResearcHaven from "./ResearcHaven";
 import Login from "../Home/Login";
 import Register from "../Home/Register";
 import {
@@ -20,6 +20,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
+
 function Intro() {
   const {
     isOpen: isLoginOpen,
@@ -39,30 +40,14 @@ function Intro() {
             mt={4}
             p={4}
             gap="2rem"
-            w="100%"
+            w="50%"
             h="80vh"
             direction="column"
             alignItems="center"
             justifyContent="center"
           >
-            <SihLogo />
-            <Text
-              textAlign="center"
-              fontFamily="Roboto"
-              fontWeight="900"
-              fontSize={{ base: "2xl", lg: "3xl" }}
-            >
-              for SIH 2022
-            </Text>
-            <Text
-              textAlign="center"
-              fontFamily="Rubik"
-              fontWeight="800"
-              fontSize={{ base: "4xl", lg: "6xl" }}
-            >
-              PLAGIARISM CHECKER
-            </Text>
-            <WebCrawler />
+            
+            <ResearcHaven />
             <Text
               textAlign="center"
               fontFamily="Poppins"
@@ -75,7 +60,7 @@ function Intro() {
               </u>{" "}
               project
             </Text>
-
+            <SihLogo />
             {/* to show forms */}
             <Show below="md">
               {<HStack>
