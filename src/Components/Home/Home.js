@@ -18,9 +18,9 @@ function Home(props) {
   });
 
   return (
-    <Flex direction={{ base: "column", md: "row" }} align="center" justify="center">
+    <Flex direction={{ base: "column", md: "row" }} align="center" >
       <Intro />
-      <Box p={4} m={5}>
+      <Box w="50%" p={4} m={5}>
         <HomeSVG />
       </Box>
     </Flex>

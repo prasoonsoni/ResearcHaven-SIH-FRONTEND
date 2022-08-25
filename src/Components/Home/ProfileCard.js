@@ -44,7 +44,7 @@ export default function ProfileCard(props) {
                     </Stack>
 
                     <Stack direction={'row'} justify={'center'} spacing={5}>
-                        <a href={props.linkedin} target="_blank">
+                        <a href={props.linkedin} rel="noreferrer" target="_blank">
                             <LinkedInIcon   sx={{ color: "white" ,fontSize:"30px"}} />
                         </a>
                         <a href={props.github} target="_blank" rel="noreferrer">

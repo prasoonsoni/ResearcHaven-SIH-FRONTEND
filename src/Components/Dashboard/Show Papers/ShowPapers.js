@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Flex, Text } from "@chakra-ui/react";
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useNavigate } from "react-router-dom";
 function ShowPapers() {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ function ShowPapers() {
         justify="center"
       >
         <Button
-        w="30vw"
+          w="30vw"
           onClick={() => {
             navigate("drafts");
           }}
@@ -23,11 +23,21 @@ function ShowPapers() {
           Go to Drafts
         </Button>
         <Button w="30vw">Plagiarism Reports</Button>
-        <Button w="30vw">Go to Submitted Documents</Button>
-        <Button w="30vw" leftIcon={<VisibilityIcon />} onClick={()=>{navigate('/dashboard/all_funded_proposals')}}>View All Funded Proposals</Button>
+        <Button leftIcon={<VisibilityIcon />} onClick={() => {
+            navigate("/dashboard/submitted");
+          }} w="30vw">View Submitted Proposals</Button>
+        <Button
+          w="30vw"
+          leftIcon={<VisibilityIcon />}
+          onClick={() => {
+            navigate("/dashboard/all_funded_proposals");
+          }}
+        >
+          View All Funded Proposals
+        </Button>
       </Flex>
       <Flex w="50%" align="center" justify="center">
-        <Text >PIE CHART</Text>
+        <Text>PIE CHART</Text>
       </Flex>
     </Flex>
   );

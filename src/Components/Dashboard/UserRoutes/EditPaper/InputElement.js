@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Textarea, Button, useToast, Flex } from "@chakra-ui/react";
 // import { Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
@@ -90,7 +90,7 @@ function InputElement(props) {
         marginTop: "2rem",
       });
       setIsDeleting(false);
-      navigate('/');
+      navigate('/dashboard/drafts');
     } else {
       toast({
         title: "Error",
@@ -102,7 +102,6 @@ function InputElement(props) {
       setIsDeleting(false);
     }
   };
-  useEffect(() => {});
 
   return (
     <>
