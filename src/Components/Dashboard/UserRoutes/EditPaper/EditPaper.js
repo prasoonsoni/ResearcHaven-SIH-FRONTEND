@@ -42,10 +42,6 @@ function EditPaper() {
     if (data) {
       setDocument(data.data);
     }
-    window.onbeforeunload = ()=>{
-      alert("Save alert");
-      return "Please save your document before leaving the page";
-    };
   }, [data]);
   return (
     <Flex

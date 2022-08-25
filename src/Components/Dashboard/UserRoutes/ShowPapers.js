@@ -15,26 +15,20 @@ function ShowPapers() {
         justify="center"
       >
         <Button
-          w="30vw"
+          w="30vw" h="10vh"
           onClick={() => {
             navigate("drafts");
           }}
         >
           Go to Drafts
         </Button>
-        <Button w="30vw">Plagiarism Reports</Button>
+        <Button w="30vw" h="10vh">Plagiarism Reports</Button>
         <Button leftIcon={<VisibilityIcon />} onClick={() => {
             navigate("/dashboard/submitted");
-          }} w="30vw">View Submitted Proposals</Button>
-        <Button
-          w="30vw"
-          leftIcon={<VisibilityIcon />}
-          onClick={() => {
+          }} w="30vw" h="10vh">View Submitted Proposals</Button>
+        <Button leftIcon={<VisibilityIcon />} onClick={() => {
             navigate("/dashboard/all_funded_proposals");
-          }}
-        >
-          View All Funded Proposals
-        </Button>
+          }} w="30vw" h="10vh">View Funded Proposals</Button>
       </Flex>
       <Flex w="50%" align="center" justify="center">
         <Text>PIE CHART</Text>

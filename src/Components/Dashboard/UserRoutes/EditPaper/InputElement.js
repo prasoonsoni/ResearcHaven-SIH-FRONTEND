@@ -1,7 +1,19 @@
 import React, { useRef, useState } from "react";
-import { Textarea, Button, useToast, Flex } from "@chakra-ui/react";
+import { Textarea, Button, useToast, Flex, Alert } from "@chakra-ui/react";
 // import { Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
+import InfoIcon from '@mui/icons-material/Info';
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  Portal,
+} from "@chakra-ui/react";
 import {
   ArrowBackIcon,
   ArrowForwardIcon,
@@ -90,7 +102,7 @@ function InputElement(props) {
         marginTop: "2rem",
       });
       setIsDeleting(false);
-      navigate('/dashboard/drafts');
+      navigate("/dashboard/drafts");
     } else {
       toast({
         title: "Error",
@@ -113,15 +125,16 @@ function InputElement(props) {
         justify="center"
         wrap={{ base: "wrap", md: "no-wrap", lg: "no-wrap" }}
       >
+        {/* SAVING THE DOCUMENT */}
         <Button
         w="300px"
+          leftIcon={<SaveOutlinedIcon />}
           mb={8}
           isLoading={isSaving}
           loadingText="Saving"
           onClick={handleSave}
           colorScheme="facebook"
         >
-          <SaveOutlinedIcon />
           &nbsp;Save Document{" "}
           <Kbd ml={2} color="white" bg="#171717">
             ctrl
@@ -131,22 +144,45 @@ function InputElement(props) {
             S
           </Kbd>
         </Button>
+
+        {/* DELETING THE DOCUMENT!!!!! */}
+        <Popover>
+          <PopoverTrigger>
+            <Button
+              w="300px"
+              mb={8}
+              colorScheme="red"
+              ml={4}
+              isLoading={isDeleting}
+              loadingText="Deleting..."
+            >
+              <DeleteIcon />
+              &nbsp;Delete Document{" "}
+              <Kbd ml={2} color="white" bg="#171717">
+                del
+              </Kbd>
+            </Button>
+          </PopoverTrigger>
+          <Portal>
+            <PopoverContent>
+              <PopoverArrow />
+              <PopoverHeader display="flex"><InfoIcon/>&nbsp;Delete the Document ?</PopoverHeader>
+              <PopoverCloseButton />
+              <PopoverBody>
+                <Alert status="warning" fontSize="12px">
+                All the changes made to this document will be discarded and deleted.
+                This Action cannot be undone.
+                </Alert>
+              </PopoverBody>
+              <PopoverFooter>
+                <Button size="sm" onClick={handleDelete} colorScheme="red">Yes, Delete</Button>
+                </PopoverFooter>
+            </PopoverContent>
+          </Portal>
+        </Popover>
+
         <Button
-        w="300px" 
-        mb={8} 
-        colorScheme="red" 
-        ml={4}
-        onClick={handleDelete}
-        isLoading={isDeleting}
-        loadingText="Deleting...">
-          <DeleteIcon />
-          &nbsp;Delete Document{" "}
-          <Kbd ml={2} color="white" bg="#171717">
-            del
-          </Kbd>
-        </Button>
-        <Button
-        w="300px"
+          w="300px"
           mb={8}
           colorScheme="messenger"
           ml={4}
@@ -198,7 +234,9 @@ function InputElement(props) {
 
         {/* NEXT HEADING */}
         <Button
-          display={props.headerNum !== props.headers.length - 1 ? "" : "none"}
+          display={
+            props.headerNum !== props.headers.length - 1 ? "flex" : "none"
+          }
           onClick={() => {
             props.setHeaderNum(props.headerNum + 1);
             handleSaveField();
@@ -210,14 +248,16 @@ function InputElement(props) {
 
         {/* SAVE ON LAST HEADING */}
         <Button
-          colorScheme="green"
-          display={props.headerNum === props.headers.length - 1 ? "" : "none"}
+          display={
+            props.headerNum === props.headers.length - 1 ? "flex" : "none"
+          }
           onClick={handleSave}
+          leftIcon={<SaveOutlinedIcon />}
+          colorScheme="green"
           isLoading={isSaving}
-          spinner={false}
-          loadingText="Saving Document"
+          loadingText="Saving..."
         >
-          Save Document
+          Save
         </Button>
       </Flex>
 
@@ -239,7 +279,7 @@ function InputElement(props) {
         resize="none"
         variant="outlined"
         autoFocus={true}
-        _focus={{ outline: "none", boxShadow: "none",border:"none" }}
+        _focus={{ outline: "none", boxShadow: "none", border: "none" }}
         boxShadow="none"
         h="80vh"
         p={4}

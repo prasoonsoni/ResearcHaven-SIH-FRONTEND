@@ -10,8 +10,6 @@ function Drafts() {
   if (error) {
     alert(error);
   }
-  console.log(isLoading);
-  console.log(data);
   return (
     <>
       <Text fontSize="2xl">Drafts</Text>
@@ -27,9 +25,11 @@ function Drafts() {
             </Stack>
           )}
           {!isLoading &&
-            data &&
+            data && data.data.length!==0 &&
             data.data.map((paper) => {
               return <DraftItem key={paper._id} paper={paper} />;})}
+          {!isLoading &&
+            data && !data.data.length && <Flex color="grey" w="100vw" h="10vh"align="center" justify="center">Nothing to show here. Create a new draft or Upload an existing one</Flex>}
         </Flex>
       </Flex>
     </>

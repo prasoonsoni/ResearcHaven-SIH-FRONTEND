@@ -1,16 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import ArticleIcon from "@mui/icons-material/Article";
 import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { Button, ButtonGroup, Flex, useToast, Text } from "@chakra-ui/react";
+import { Button, ButtonGroup, Flex, Text } from "@chakra-ui/react";
 function DraftItem(props) {
-  const toast = useToast();
+    const [isSubmitting,setIsSubmitting] = useState(false);
   const navigate = useNavigate();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const handleSubmit = async()=>{
-    let url = "https://webcrawlers-sih.vercel.app/api/user/"
-  }
   return (
     <Flex
       key={props.paper._id}
@@ -58,7 +53,7 @@ function DraftItem(props) {
           isLoading={isSubmitting}
           loadingText="Checking.."
           onClick={()=>{
-            console.log("Click is working");
+            navigate("/dashboard/check/"+props.paper._id);
           }}
         >
           Check Plagiarism
