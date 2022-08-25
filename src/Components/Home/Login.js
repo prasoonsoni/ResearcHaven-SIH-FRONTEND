@@ -63,8 +63,13 @@ function Login(props) {
       });
       let data = await response.json();
       if (data.success) {
+        console.log(data);
         sessionStorage.setItem("token", data.token);
-        navigate("/dashboard");
+        sessionStorage.setItem("type",data.type);
+        if(data.type==="admin"){
+          navigate("/dashboard/admin");
+        }else{
+        navigate("/dashboard");}
         toast({
           title: "Successful",
           description: "You have successfully logged in.",
@@ -72,6 +77,7 @@ function Login(props) {
           duration: 1500,
           isClosable: true,
         });
+        
         setIsLoading(false);
       } else {
         toast({

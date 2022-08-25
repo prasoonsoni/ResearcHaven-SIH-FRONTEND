@@ -28,7 +28,7 @@ function InputElement(props) {
   const handleSave = async () => {
     setIsSaving(true);
     let url =
-      "https://webcrawlers-sih.vercel.app/api/researchpaper/update/" + props.id;
+      "https://webcrawlers-sih.vercel.app/api/proposal/update/" + props.id;
     let response = await fetch(url, {
       method: "PUT",
       headers: {
@@ -71,7 +71,7 @@ function InputElement(props) {
   const handleDelete = async () => {
     setIsDeleting(true);
     let url =
-      "https://webcrawlers-sih.vercel.app/api/researchpaper/delete/" + props.id;
+      "https://webcrawlers-sih.vercel.app/api/proposal/delete/" + props.id;
     let response = await fetch(url, {
       method: "DELETE",
       headers: {
@@ -152,7 +152,7 @@ function InputElement(props) {
           colorScheme="messenger"
           ml={4}
           onClick={() => {
-            navigate("/dashboard");
+            navigate("/dashboard/drafts");
           }}
         >
           <ExternalLinkIcon />
@@ -182,7 +182,7 @@ function InputElement(props) {
 
         {/* OPTIONS MENU FOR HEADING */}
         <Select
-          w="50%"
+          w="30vw"
           textAlign="center"
           ref={selectRef}
           value={value2}

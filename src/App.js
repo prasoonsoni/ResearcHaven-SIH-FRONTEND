@@ -5,26 +5,25 @@ import Home from "./Components/Home/Home";
 import About from "./Components/About/About";
 import Contact from "./Components/Contact/Contact";
 import { useState } from "react";
-import Dashboard from "./Components/Dashboard/Dashboard";
+import Dashboard from "./Components/Dashboard/Dashboards/Dashboard";
 import { UserProvider } from "./Components/Contexts/userContext";
+import UGCDashboard from "./Components/Dashboard/Dashboards/UGCDashboard";
 function App() {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showRegForm, setShowRegForm] = useState(false);
   return (
-    <UserProvider value={{showLoginForm, setShowLoginForm,showRegForm,setShowRegForm}}>
+    <UserProvider
+      value={{ showLoginForm, setShowLoginForm, showRegForm, setShowRegForm }}
+    >
       <Router>
         <div className="App">
-          <Navbar m={0}/>
+          <Navbar m={0} />
           <Routes>
-            <Route
-              path="/"
-              element={
-                <Home/>
-              }
-            />
+            <Route index element={<Home />} />
             <Route exact path="/about" element={<About />} />
             <Route exact path="/contact" element={<Contact />} />
             <Route exact path="/dashboard/*" element={<Dashboard />} />
+            <Route exact path="/dashboard/admin/*" element={<UGCDashboard />} />
           </Routes>
         </div>
       </Router>

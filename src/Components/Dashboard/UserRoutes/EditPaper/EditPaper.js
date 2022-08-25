@@ -2,8 +2,8 @@ import { Flex, Skeleton } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import InputElement from "./InputElement";
-import DocShower from "./DocShower";
-import { useFetch } from "../Hooks/useFetch";
+import DocShower from "../../CommonRoutes/DocShower";
+import { useFetch } from "../../../Hooks/useFetch";
 
 function EditPaper() {
   // to get the id of the paper
@@ -28,18 +28,15 @@ function EditPaper() {
   const [headerNum, setHeaderNum] = useState(0);
   const headers = [
     "title",
-    "authors",
+    "researchers",
     "keywords",
-    "abstract",
     "introduction",
-    "literature_survey",
-    "proposed_work",
+    "problem_statements_and_objectives",
+    "literature_review",
     "methodology",
-    "experimental_evaluation",
-    "conclusion",
-    "references",
+    "bibliography"
   ];
-  let url = "https://webcrawlers-sih.vercel.app/api/researchpaper/draft/" + id;
+  let url = "https://webcrawlers-sih.vercel.app/api/proposal/draft/" + id;
   const { data, isLoading, error } = useFetch(url);
   useEffect(() => {
     if (data) {

@@ -65,7 +65,9 @@ function ProfilePopover() {
           <Popover _focus={{ outline: "none" }}>
             {(screenWidth > "1040") && (
               <Button
+              size="sm"
                 mr={4}
+                colorScheme="yellow"
                 onClick={(open) => {
                   navigate("/");
                 }}
@@ -79,6 +81,7 @@ function ProfilePopover() {
               _hover={{ bg: "none", outline: "none", boxShadow: "none" }}
             >
               <Button
+              size="sm"
                 _hover={{ background: "none" }}
                 _focus={{ bg: "none", outline: "none", boxShadow: "none" }}
                 bg="none"

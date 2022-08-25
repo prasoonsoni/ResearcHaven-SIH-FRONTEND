@@ -8,13 +8,13 @@ function DocShower(props) {
       <Box key={header} m={8}>
         {header === "title" && (
           <Text as="div" align="center" fontFamily="Times" fontSize="xl">
-            <ReactMarkdown>{props.document[header].toUpperCase().split("_").join(" ")}</ReactMarkdown>
+            <ReactMarkdown>{props.document[header]===""?"No Title":props.document[header].toUpperCase().split("_").join(" ")}</ReactMarkdown>
           </Text>
         )}
         {header !== "title" && (
           <>
             <Text as="div" fontFamily="Times" fontSize="l">
-              {header.toUpperCase().split("_").join(" ")}
+              <ReactMarkdown>{`**${header.toUpperCase().split("_").join(" ")}**`}</ReactMarkdown>
             </Text>
             <Text as="div" fontFamily="Times New Roman">
               <ReactMarkdown>{props.document[header]}</ReactMarkdown>
