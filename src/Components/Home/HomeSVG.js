@@ -3,7 +3,7 @@ import React from 'react'
 function HomeSVG() {
     return (
         <>
-            <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"  width="600" padding="200"
+            <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"  width="fit" padding="200"
       height="600" viewBox="0 0 598.38259 519.36575" xmlnsXlink="http://www.w3.org/1999/xlink">
                 <path d="M854.37384,671.40435l16.11882-5.113a54.56124,54.56124,0,0,0-.38831-26.249c-6.47575,14.3987-25.47463,17.92647-36.29963,29.419a32.81871,32.81871,0,0,0-8.3953,27.17926l-3.39124,11.504a54.99381,54.99381,0,0,0,40.024-22.76717,53.12122,53.12122,0,0,0,6.22435-11.78347C861.39249,672.90577,854.37384,671.40435,854.37384,671.40435Z" transform="translate(-300.34479 -190.05939)" fill="#f2f2f2" />
                
