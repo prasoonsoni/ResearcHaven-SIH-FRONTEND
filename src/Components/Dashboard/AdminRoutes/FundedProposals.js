@@ -8,17 +8,17 @@ import {
   TableCaption,
   TableContainer,
   Text,
-  VStack
+  VStack,
+  Button
 } from '@chakra-ui/react'
-import { Button } from 'react-bootstrap';
 
 function FundedProposals() {
 
   const baseUrl = "https://webcrawlers-sih.vercel.app/api/funding/";
   const [data, setData] = useState([])
 
-  const navigateNewTab = () =>{
-    
+  const navigateNewTab = () => {
+
   }
 
   useEffect(() => {
@@ -55,12 +55,12 @@ function FundedProposals() {
               </Tr>
             </Thead>
             <Tbody>
-              {data.map((item, i) => (
+              {data && data.map((item, i) => (
                 <Tr>
                   <Th>{item.cid}</Th>
                   <Th>{item.title.slice(0, 60)}...</Th>
                   <Th>
-                    <Button padding='5'onClick={()=>{navigateNewTab();}}>
+                    <Button padding='5' onClick={() => { navigateNewTab(); }}>
                       Open
                     </Button>
                   </Th>
