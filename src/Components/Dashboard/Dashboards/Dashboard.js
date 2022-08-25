@@ -5,10 +5,11 @@ import { Flex } from "@chakra-ui/react";
 import EditPaper from "../UserRoutes/EditPaper/EditPaper";
 import Buttons from "../UserRoutes/CreateUpload/Buttons";
 import ShowPapers from "../UserRoutes/ShowPapers";
-import AllPublishedPapers from "../Show Papers/PaperTypes/AllPublishedProposals";
 import Drafts from "../Show Papers/PaperTypes/Drafts/Drafts";
 import Check from "../UserRoutes/Plagiarism/Check";
 import Report from "../UserRoutes/Plagiarism/Report";
+import AllSubmittedProposals from "../Show Papers/PaperTypes/Submitted/AlSubmittedProposals";
+import ShowEntryPoint from "../CommonRoutes/ShowEntryPoint";
 function Dashboard() {
   const navigate = useNavigate();
   useEffect(() => {
@@ -29,11 +30,11 @@ function Dashboard() {
             {/* To show the drafts of user */}
             <Route exact path="/drafts" element={<Drafts />} />
             {/* To show the drafts of user */}
-            <Route exact path="/submitted" element={<AllPublishedPapers />} />
+            <Route exact path="/submitted" element={<AllSubmittedProposals />} />
             {/* To show the drafts of user */}
-            <Route exact path="/funded" element={<AllPublishedPapers />} />
+            <Route exact path="/funded" element={<AllSubmittedProposals />} />
             {/* PAGE TO SHOW ALL THE PUBLISHED PAPERS */}
-            <Route exact path="/all_funded_proposals" element={<AllPublishedPapers />} />
+            <Route exact path="/all_funded_proposals" element={<AllSubmittedProposals />} />
             {/* PAGE TO SHOW ALL THE REPORT FOR ALL SUBMITTED PAPERS */}
             <Route exact path="/report/:id" element={<Report />} />
           </Route>
@@ -41,6 +42,8 @@ function Dashboard() {
           <Route exact path="/edit/:id" element={<EditPaper />} />
           {/* ROUTE TO SHOW PLAGIARISM CHECKING */}
           <Route exact path="/check/:id" element={<Check />} />
+          {/* ROUTE TO SHOW A DOC */}
+          <Route exact path="/view/:id" element={<ShowEntryPoint />} />
         </Routes>
       </Flex>
   );

@@ -53,7 +53,10 @@ function DraftItem(props) {
           isLoading={isSubmitting}
           loadingText="Checking.."
           onClick={()=>{
-            navigate("/dashboard/check/"+props.paper._id);
+            if(props.paper.title===""){
+              alert("Empty document can not be submitted for plagiarism check");
+            }else{
+            navigate("/dashboard/check/"+props.paper._id);}
           }}
         >
           Check Plagiarism
