@@ -68,6 +68,8 @@ function Login(props) {
         sessionStorage.setItem("type",data.type);
         if(data.type==="admin"){
           navigate("/dashboard/admin");
+        }else if(data.type==="expert"){
+          navigate("/dashboard/expert");
         }else{
         navigate("/dashboard");}
         toast({

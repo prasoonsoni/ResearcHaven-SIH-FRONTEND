@@ -8,6 +8,7 @@ import { useState } from "react";
 import Dashboard from "./Components/Dashboard/Dashboards/Dashboard";
 import { UserProvider } from "./Components/Contexts/userContext";
 import UGCDashboard from "./Components/Dashboard/Dashboards/UGCDashboard";
+import ExpertDashboard from "./Components/Dashboard/Dashboards/ExpertDashboard";
 function App() {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showRegForm, setShowRegForm] = useState(false);
@@ -24,6 +25,7 @@ function App() {
             <Route exact path="/contact" element={<Contact />} />
             <Route exact path="/dashboard/*" element={<Dashboard />} />
             <Route exact path="/dashboard/admin/*" element={<UGCDashboard />} />
+            <Route exact path="/dashboard/expert/*" element={<ExpertDashboard />} />
           </Routes>
         </div>
       </Router>
