@@ -24,6 +24,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-slideshow-image": "^4.0.4",
+    "react-to-pdf": "^0.0.14",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -1,8 +1,9 @@
-import { Box, Skeleton, Text } from "@chakra-ui/react";
+import { Box, Button, Skeleton, Text } from "@chakra-ui/react";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
 function DocShower(props) {
+  const ref=React.createRef();
   const items = props.array.map((header) => {
     return (
       <Box key={header} m={8}>
@@ -30,6 +31,8 @@ function DocShower(props) {
         <Skeleton height="80vh" w="100%" m={4} borderRadius="10px" />
       )}
       {!props.isLoading && (
+        <>
+        
         <Box
           m={4}
           p={4}
@@ -40,10 +43,12 @@ function DocShower(props) {
           w="40vw"
           overflowY="scroll"
         >
-          <Box>{items}</Box>
+          <Box ref={ref}>{items}</Box>
         </Box>
+        </>
       )}
-    </>
+      </>
+    
   );
 }
 
