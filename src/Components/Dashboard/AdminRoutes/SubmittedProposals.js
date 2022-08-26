@@ -355,7 +355,7 @@ function SubmittedProposals() {
                               <ModalBody>
                                 <TableContainer  w="100vw" >
                                   <Table variant='simple' >
-                                   
+                                  
                                     <Thead>
                                       <Tr>
                                         <Th>Expert Name</Th>

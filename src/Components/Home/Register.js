@@ -33,6 +33,7 @@ function Register(props) {
   const data = {
     first_name: "",
     last_name: "",
+    whatsapp_number: "",
     email: "",
     password: "",
   };
@@ -55,7 +56,9 @@ function Register(props) {
       myData["last_name"] = last;
       myData["email"] = email;
       myData["password"] = pass;
+      myData["whatsapp_number"] = phone;
       // check if passwords are same or not
+      console.log(myData)
       if (cpass !== pass) {
         toast({
           title: "Passwords do not match",
@@ -70,8 +73,9 @@ function Register(props) {
         let response = await fetch(url, {
           method: "POST",
           headers: {
-            Accept: "application.json",
             "Content-Type": "application/json",
+            Accept: "application.json",
+            'Access-Control-Allow-Origin': '*'
           },
           body: JSON.stringify(myData),
           cache: "default",
@@ -112,7 +116,7 @@ function Register(props) {
       setPass(event.target.value);
     } else if (name === "cpass") {
       setCpass(event.target.value);
-    }else if(name==="phone"){
+    } else if (name === "phone") {
       setPhone(event.target.value);
     }
   };
