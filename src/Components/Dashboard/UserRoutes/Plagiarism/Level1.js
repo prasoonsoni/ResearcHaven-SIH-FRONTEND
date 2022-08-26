@@ -14,7 +14,13 @@ function Level1() {
   let reject = 0;
   const { data, isLoading, error } = useFetch(url, "POST");
   if (data) {
-    isRequired = data.mean > 20;
+    for(let i=0;i<data.data.length;i++){
+      if(data.data[i][1]>30){
+        isRequired=true;
+        break;
+      }else{
+      isRequired = false;}
+    }
   }
   return (
     <>
