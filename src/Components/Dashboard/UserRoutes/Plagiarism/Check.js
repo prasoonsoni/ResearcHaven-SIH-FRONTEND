@@ -99,10 +99,6 @@ function Check() {
                 <Divider w="100px" />
               </Flex>
               {loading && <Spinner size="sm" color="gray" />}
-              {!loading && <>
-              <div>Mean Similarity {data.google_similarity_score}</div>
-              
-              </>}
             </Flex>
 
             {!loading && (
