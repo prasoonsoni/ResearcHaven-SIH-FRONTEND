@@ -1,7 +1,7 @@
 import React from "react";
 import ArticleIcon from "@mui/icons-material/Article";
 import { useNavigate } from "react-router-dom";
-import { Button, Flex, Text } from "@chakra-ui/react";
+import { Button, ButtonGroup, Flex, Text } from "@chakra-ui/react";
 
 function SubmittedItem(props) {
   const navigate = useNavigate();
@@ -30,9 +30,17 @@ function SubmittedItem(props) {
             : `(No Title)`}
         </Text>
       </Flex>
-      <Button onClick={()=>{navigate("/dashboard/view/"+props.paper.cid)}}>View Proposal</Button>
+      <ButtonGroup>
+        <Button
+          onClick={() => {
+            navigate("/dashboard/view/" + props.paper.cid);
+          }}
+        >
+          View Proposal
+        </Button>
+      </ButtonGroup>
     </Flex>
-  )
+  );
 }
 
-export default SubmittedItem
+export default SubmittedItem;

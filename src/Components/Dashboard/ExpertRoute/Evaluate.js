@@ -11,12 +11,11 @@ import {
   Button,
   Text,
   Flex,
-  Skeleton,
   useToast,
   VStack,
   Input,
 } from "@chakra-ui/react";
-import { Editable, EditableInput, EditablePreview } from "@chakra-ui/react";
+
 import { useFetch } from "../../Hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 

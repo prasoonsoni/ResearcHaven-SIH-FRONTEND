@@ -24,7 +24,7 @@ function Level2(props) {
   }
   let isOkay = false;
   if (data) {
-    isOkay = data.mean < 20;
+    isOkay = data.mean < 30;
   }
   const handleSubmit = async () => {
     setIsSubmitting(true);
@@ -49,7 +49,6 @@ function Level2(props) {
       setIsSubmitting(false);
     }
   };
-
   return (
     <>
       <Flex

@@ -38,27 +38,7 @@ function Check() {
   }else if(error){
     alert(error);
   }
-  url="https://sih-nlp.herokuapp.com/level0googleplagiarism/"
-  const handleSubmit = async()=>{
-    setLoading(true);
-    let response = await fetch(url,{
-      method:"POST",
-      headers:{
-        "Content-Type": "application/json"
-      },
-      body:JSON.stringify(myObj)
-    });
-    let data = await response.json();
-    if(data){
-      setLoading(false);
-      console.log(data);
-      if(data.google_similarity_score>0.3){
-        setReject(true);
-      }else{setLvl1(true)}
-    }else{
-      setLoading(false);
-    }
-  }
+  
   return (
     <>
       <Flex align="center" justify="center" direction="column" gap={8} p={2}>
@@ -76,7 +56,7 @@ function Check() {
           p={4}
         >
           {/* STATIC */}
-          <Button onClick={handleSubmit}>Check for Level 0 Plag</Button>
+          <Button>Check for Level 0 Plag</Button>
           <Text fontSize="3xl" w="100%" align="center">
             LEVEL 0
           </Text>
@@ -99,7 +79,9 @@ function Check() {
                 <Divider w="100px" />
               </Flex>
               {loading && <Spinner size="sm" color="gray" />}
-              {!loading && <><div>Mean Similarity {data.google_similarity_score}</div>
+              {!loading && <>
+              <div>Mean Similarity {data.google_similarity_score}</div>
+              
               </>}
             </Flex>
 

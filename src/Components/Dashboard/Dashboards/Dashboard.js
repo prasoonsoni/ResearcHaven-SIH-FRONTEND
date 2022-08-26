@@ -38,8 +38,6 @@ function Dashboard() {
             <Route exact path="/funded" element={<FundedProposals />} />
             {/* PAGE TO SHOW ALL THE PUBLISHED PAPERS */}
             <Route exact path="/all_funded_proposals" element={<AllSubmittedProposals />} />
-            {/* PAGE TO SHOW ALL THE REPORT FOR ALL SUBMITTED PAPERS */}
-            <Route exact path="/report/:id" element={<Report />} />
           </Route>
           {/* ROUTE TO EDIT THE RESEARCH PAPER */}
           <Route exact path="/edit/:id" element={<EditPaper />} />
@@ -47,6 +45,8 @@ function Dashboard() {
           <Route exact path="/check/:id" element={<Check />} />
           {/* ROUTE TO SHOW A DOC */}
           <Route exact path="/view/:id" element={<ShowEntryPoint />} />
+          {/* PAGE TO SHOW ALL THE REPORT FOR ALL SUBMITTED PAPERS */}
+          <Route exact path="/report/:id" element={<Report />} />
         </Routes>
       </Flex>
   );
