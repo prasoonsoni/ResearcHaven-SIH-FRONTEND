@@ -35,10 +35,12 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
 } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom';
 
 
 function SubmittedProposals() {
   let toast = useToast();
+  const navigate = useNavigate();
   const baseUrl = "https://webcrawlers-sih.vercel.app/api/proposal/submitted";
   const [data, setData] = useState([])
   const [fund, setFund] = useState("");
@@ -182,7 +184,7 @@ function SubmittedProposals() {
                   <Th>{item.title.slice(0, 60)}...</Th>
                   <Th>
                     <HStack>
-                      <Button padding='5'>
+                      <Button padding='5' onClick={()=>{navigate("/dashboard/admin/view/"+item.cid)}}>
                         Open
                       </Button>
                       <Button padding='5' onClick={onOpen}>
@@ -249,7 +251,7 @@ function SubmittedProposals() {
                               <Button ref={cancelRef} onClick={onClose1}>
                                 Cancel
                               </Button>
-                              <Button colorScheme='red' ml={3} onClick={async() => rejectProposal(item.cid)}>
+                              <Button colorScheme='red' ml={3} onClick={async() => {rejectProposal(item.cid);window.reload();}}>
                                 Delete
                               </Button>
                             </AlertDialogFooter>

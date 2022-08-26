@@ -11,18 +11,14 @@ function EditPaper() {
   const id = params.id;
   // setting state for the whole documents
   const [document, setDocument] = useState({
-    id: id,
-    title: "",
-    authors: "",
-    keywords: "",
-    abstract: "",
-    introduction: "",
-    literature_survey: "",
-    proposed_work: "",
-    methodology: "",
-    experimental_evaluation: "",
-    conclusion: "",
-    references: "",
+    title:"",
+    researchers:"",
+    keywords:"",
+    introduction:"",
+    problem_statement_and_objectives:"",
+    literature_review:"",
+    methodology:"",
+    bibliography:"",
   });
   // setting a state variable to get the titles from structure
   const [headerNum, setHeaderNum] = useState(0);
@@ -31,7 +27,7 @@ function EditPaper() {
     "researchers",
     "keywords",
     "introduction",
-    "problem_statements_and_objectives",
+    "problem_statement_and_objectives",
     "literature_review",
     "methodology",
     "bibliography",

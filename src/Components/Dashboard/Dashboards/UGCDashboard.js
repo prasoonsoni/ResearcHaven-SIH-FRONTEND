@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import FundedProposals from '../AdminRoutes/FundedProposals';
 import ShowPapers from  '../AdminRoutes/ShowPapers';
 import SubmittedProposals from '../AdminRoutes/SubmittedProposals';
+import ShowEntryPoint from '../CommonRoutes/ShowEntryPoint';
 function UGCDashboard() {
   const navigate = new useNavigate();
   useEffect(()=>{
@@ -19,6 +20,8 @@ function UGCDashboard() {
       <Route path="/funded" element={<FundedProposals/>}/>
       {/* Submitted projects */}
       <Route path="/submitted" element={<SubmittedProposals/>}/>
+      {/* To show a document */}
+      <Route exact path="/view/:id" element={<ShowEntryPoint />} />
     </Routes>
   )
 }

@@ -22,12 +22,11 @@ function ShowPapers() {
         >
           Go to Drafts
         </Button>
-        <Button w="30vw" h="10vh">Plagiarism Reports</Button>
         <Button leftIcon={<VisibilityIcon />} onClick={() => {
             navigate("/dashboard/submitted");
           }} w="30vw" h="10vh">View Submitted Proposals</Button>
         <Button leftIcon={<VisibilityIcon />} onClick={() => {
-            navigate("/dashboard/all_funded_proposals");
+            navigate("/dashboard/funded");
           }} w="30vw" h="10vh">View Funded Proposals</Button>
       </Flex>
       <Flex w="50%" align="center" justify="center">

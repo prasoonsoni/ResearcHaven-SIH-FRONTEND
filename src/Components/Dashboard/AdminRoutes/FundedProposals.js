@@ -11,15 +11,14 @@ import {
   VStack,
   Button
 } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom';
 
 function FundedProposals() {
 
   const baseUrl = "https://webcrawlers-sih.vercel.app/api/funding/";
   const [data, setData] = useState([])
 
-  const navigateNewTab = () => {
-
-  }
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +35,7 @@ function FundedProposals() {
     }
     fetchData()
     console.log(data)
-  }, [])
+  }, [data])
 
   return (
     <>
@@ -60,7 +59,7 @@ function FundedProposals() {
                   <Th>{item.cid}</Th>
                   <Th>{item.title.slice(0, 60)}...</Th>
                   <Th>
-                    <Button padding='5' onClick={() => { navigateNewTab(); }}>
+                    <Button padding='5' onClick={() => { navigate("/dashboard/admin/view/"+item.cid); }}>
                       Open
                     </Button>
                   </Th>

@@ -10,6 +10,7 @@ import Check from "../UserRoutes/Plagiarism/Check";
 import Report from "../UserRoutes/Plagiarism/Report";
 import AllSubmittedProposals from "../Show Papers/PaperTypes/Submitted/AlSubmittedProposals";
 import ShowEntryPoint from "../CommonRoutes/ShowEntryPoint";
+import FundedProposals from "../Show Papers/PaperTypes/Funded/FundedProposals";
 function Dashboard() {
   const navigate = useNavigate();
   useEffect(() => {
@@ -32,7 +33,7 @@ function Dashboard() {
             {/* To show the drafts of user */}
             <Route exact path="/submitted" element={<AllSubmittedProposals />} />
             {/* To show the drafts of user */}
-            <Route exact path="/funded" element={<AllSubmittedProposals />} />
+            <Route exact path="/funded" element={<FundedProposals />} />
             {/* PAGE TO SHOW ALL THE PUBLISHED PAPERS */}
             <Route exact path="/all_funded_proposals" element={<AllSubmittedProposals />} />
             {/* PAGE TO SHOW ALL THE REPORT FOR ALL SUBMITTED PAPERS */}

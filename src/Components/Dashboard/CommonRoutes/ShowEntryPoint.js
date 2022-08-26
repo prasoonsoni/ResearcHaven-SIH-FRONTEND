@@ -1,27 +1,31 @@
-import React from 'react'
-import { useParams } from 'react-router-dom';
-import DocShower from './DocShower';
+import { Flex, Skeleton } from "@chakra-ui/react";
+import React from "react";
+import { useParams } from "react-router-dom";
+import { useFetch } from "../../Hooks/useFetch";
+import DocShower from "./DocShower";
 
-function ShowEntryPoint(props){
-    const params = useParams();
-    const cid = params.pathname();
-    const headers = [
-        "title",
-        "researchers",
-        "keywords",
-        "introduction",
-        "problem_statements_and_objectives",
-        "literature_review",
-        "methodology",
-        "bibliography",
-      ];
-      let url="https://webcrawlers-sih.vercel.app/api/proposal/submitted/"+cid;
-    //   call api to get proposals and send to doc shower.
+function ShowEntryPoint() {
+  const params = useParams();
+  const cid = params.id;
+  const headers = [
+    "title",
+    "researchers",
+    "keywords",
+    "introduction",
+    "problem_statement_and_objectives",
+    "literature_review",
+    "methodology",
+    "bibliography",
+  ];
+  let url = "https://webcrawlers-sih.vercel.app/api/proposal/submitted/"+cid;
+  console.log(url);
+  const { data, isLoading, error} = useFetch(url,"GET");
   return (
-    <>
-    <DocShower headers={headers} document = {props.document}/>
-    </>
-  )
+    <Flex w="100%" align="center" justify="center">
+      {isLoading && <Skeleton/>}
+      {data&&<DocShower array={headers} document={data.data} />}
+    </Flex>
+  );
 }
 
-export default ShowEntryPoint
+export default ShowEntryPoint;
