@@ -24,7 +24,13 @@ function Level2(props) {
   }
   let isOkay = false;
   if (data) {
-    isOkay = data.mean < 30;
+    for(let i=0;i<data.data.length;i++){
+      if(data.data[i].plagiarism>20){
+        isOkay = false;
+        break;
+      }else{
+      isOkay = true;}
+    }
   }
   const handleSubmit = async () => {
     setIsSubmitting(true);
@@ -92,7 +98,7 @@ function Level2(props) {
               Mean Plagiarism Score is : {data.mean}<br/>
               <h1>MATCHED WITH : </h1>
               {data && data.data.map((item,index)=>{
-                return <div><div>{index+1} CID : {item.id}</div>
+                return <div key={item.id}><div>{index+1} CID : {item.id}</div>
                 <div>SIMILARITY SCORE: {item.plagiarism}</div></div>
               })}
               </>}
@@ -122,7 +128,7 @@ function Level2(props) {
         {!isLoading && (
           <Button
             onClick={() => {
-              navigate("/report/" + props.id);
+              navigate("/dashboard/report/" + props.id);
             }}
           >
             See Detailed Plagiarism Report
