@@ -17,6 +17,8 @@ function Check() {
 
   // setting parameter to go to the next level
   const [lvl1,setLvl1] = useState(false);
+  const [reject,setReject] = useState(false);
+
   // setting parameter to set loading
   const [loading,setLoading] = useState(false);
   // template
@@ -51,7 +53,7 @@ function Check() {
       setLoading(false);
       console.log(data);
       if(data.google_similarity_score>0.3){
-        setLvl1(false);
+        setReject(true);
       }else{setLvl1(true)}
     }else{
       setLoading(false);
@@ -69,7 +71,7 @@ function Check() {
           w="50vw"
           borderRadius="1.2rem"
           borderColor={
-            loading ? "gray" : (data ? (lvl1?"orange":"red"): "white")
+            loading ? "gray" : (data ? (lvl1?"orange":"white"): "white")
           }
           p={4}
         >
@@ -111,7 +113,6 @@ function Check() {
         {/* <Button isDisabled={lvl1} onClick={handleSubmit} isLoading={loading} loadingText="Fetching results...">SUBMIT FOR LEVEL 0</Button> */}
         {/* LEVEL 1 */}
         { lvl1&& <Level1/>}
-        { !lvl1&& data && <>Your code did not pass the check.</>}
       </Flex>
     </>
   );

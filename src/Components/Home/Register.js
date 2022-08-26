@@ -20,6 +20,7 @@ function Register(props) {
   const [email, setEmail] = React.useState("");
   const [pass, setPass] = React.useState("");
   const [cpass, setCpass] = React.useState("");
+  const [phone, setPhone] = React.useState("");
   const [show, setShow] = React.useState(false)
   const [show1, setShow1] = React.useState(false)
 
@@ -111,6 +112,8 @@ function Register(props) {
       setPass(event.target.value);
     } else if (name === "cpass") {
       setCpass(event.target.value);
+    }else if(name==="phone"){
+      setPhone(event.target.value);
     }
   };
   return (
@@ -179,6 +182,23 @@ function Register(props) {
                 We'll never share your email.
               </FormHelperText>
             </FormControl>
+
+            <FormControl mt={4} isRequired>
+              <FormLabel color="white">Phone Number</FormLabel>
+              <Input
+                name="phone"
+                fontFamily="Roboto"
+                bg="white"
+                color="black"
+                _focus={{ color: "black" }}
+                value={phone}
+                onChange={handleChange}
+                placeholder="Enter your phone number"
+                _placeholder={{ color: "grey" }}
+                type="tel"
+              />
+            </FormControl>
+
 
             <FormControl mt={4} isRequired>
               <FormLabel color="white">Password</FormLabel>

@@ -52,6 +52,14 @@ function Level1() {
                 <Divider w="100px" />
               </Flex>
               {isLoading && <Spinner size="sm" color="gray" />}
+              {!isLoading && <>
+              Mean Plagiarism Score is : {data.mean}<br/>
+              <h1>COMPARED WITH : </h1>
+              {data && data.data.map((item,index)=>{
+                return <div key={item.id}><div>{index+1} CID : {item.id}</div>
+                <div>SIMILARITY SCORE: {item.plagiarism}</div></div>
+              })}
+              </>}
             </Flex>
 
             {!isLoading && (
