@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { useFetch } from "../../../Hooks/useFetch";
 import Level1 from "./Level1";
 import { Spinner } from "@chakra-ui/react";
-
+// 
 function Check() {
   const params = useParams();
   const id = params.id;
@@ -17,13 +17,15 @@ function Check() {
 
   // setting parameter to go to the next level
   const [lvl1,setLvl1] = useState(false);
+  const [reject,setReject] = useState(false);
+
   // setting parameter to set loading
   const [loading,setLoading] = useState(false);
   // template
   let myObj = {
     "og":{},
     "sus": {"sus_title":"","sus_ps_obj":"","sus_introduction":"","sus_keywords":"","sus_proposed_method":""},
-    "type":0,
+    "type":0,"apikey":"AIzaSyBzLQiTsvKVY_HlF7qDn0o7OO-_HD-iyDc"
   }
   // fetching boody of the doucment
   if(data){
@@ -51,7 +53,7 @@ function Check() {
       setLoading(false);
       console.log(data);
       if(data.google_similarity_score>0.3){
-        setLvl1(false);
+        setReject(true);
       }else{setLvl1(true)}
     }else{
       setLoading(false);
@@ -69,7 +71,7 @@ function Check() {
           w="50vw"
           borderRadius="1.2rem"
           borderColor={
-            loading ? "gray" : (data ? (lvl1?"orange":"red"): "white")
+            loading ? "gray" : (data ? (lvl1?"orange":"white"): "white")
           }
           p={4}
         >
@@ -97,6 +99,8 @@ function Check() {
                 <Divider w="100px" />
               </Flex>
               {loading && <Spinner size="sm" color="gray" />}
+              {!loading && <><div>Mean Similarity {data.google_similarity_score}</div>
+              </>}
             </Flex>
 
             {!loading && (
@@ -111,7 +115,6 @@ function Check() {
         {/* <Button isDisabled={lvl1} onClick={handleSubmit} isLoading={loading} loadingText="Fetching results...">SUBMIT FOR LEVEL 0</Button> */}
         {/* LEVEL 1 */}
         { lvl1&& <Level1/>}
-        { !lvl1&& data && <>Your code did not pass the check.</>}
       </Flex>
     </>
   );

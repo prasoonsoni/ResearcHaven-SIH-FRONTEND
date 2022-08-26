@@ -46,12 +46,10 @@ function DraftItem(props) {
           &nbsp;Edit
         </Button>
 
-        {/* publish button */}
+        {/* check button */}
         <Button
           fontSize="14px"
           colorScheme="blue"
-          isLoading={isSubmitting}
-          loadingText="Checking.."
           onClick={()=>{
             if(props.paper.title===""){
               alert("Empty document can not be submitted for plagiarism check");
@@ -61,7 +59,7 @@ function DraftItem(props) {
         >
           Check Plagiarism
         </Button>
-        <Button fontSize="12px">SEE PLAGIARISM REPORT</Button>
+        <Button fontSize="12px" onClick={navigate("/dashboard/report/"+props.paper._id)}>SEE PLAGIARISM REPORT</Button>
       </ButtonGroup>
     </Flex>
   );

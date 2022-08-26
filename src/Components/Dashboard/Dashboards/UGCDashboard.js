@@ -9,6 +9,8 @@ function UGCDashboard() {
   useEffect(()=>{
     if(sessionStorage.getItem('type')!=="admin"){
       navigate("/");
+    }else if(sessionStorage.getItem('type')!=="admin"){
+      navigate("/");
     }
   })
   return (

@@ -22,8 +22,7 @@ function ShowEntryPoint() {
   const { data, isLoading, error} = useFetch(url,"GET");
   return (
     <Flex w="100%" align="center" justify="center">
-      {isLoading && <Skeleton/>}
-      {data&&<DocShower array={headers} document={data.data} />}
+      {data&&<DocShower isLoading={isLoading} array={headers} document={data.data} />}
     </Flex>
   );
 }

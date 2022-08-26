@@ -19,6 +19,8 @@ function Dashboard() {
     }else{
       if(sessionStorage.getItem("type")==="admin"){
         navigate("/dashboard/admin");
+      }else if(sessionStorage.getItem("type")==="expert"){
+        navigate("/dashboard/expert");
       }
     }
   });

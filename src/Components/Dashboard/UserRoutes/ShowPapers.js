@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Flex, Text } from "@chakra-ui/react";
+import { Button, Flex, Text} from "@chakra-ui/react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useNavigate } from "react-router-dom";
 import { Doughnut } from "react-chartjs-2";
@@ -64,7 +64,8 @@ function ShowPapers() {
         justify="center"
       >
         <Button
-          w="30vw" h="10vh"
+          w="30vw"
+          h="10vh"
           onClick={() => {
             navigate("drafts");
           }}

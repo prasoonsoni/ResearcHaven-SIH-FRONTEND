@@ -89,6 +89,14 @@ function Level2(props) {
                 <Divider w="100px" />
               </Flex>
               {isLoading && <Spinner size="sm" color="gray" />}
+              {!isLoading && <>
+              Mean Plagiarism Score is : {data.mean}<br/>
+              <h1>MATCHED WITH : </h1>
+              {data && data.data.map((item,index)=>{
+                return <div><div>{index+1} CID : {item.id}</div>
+                <div>SIMILARITY SCORE: {item.plagiarism}</div></div>
+              })}
+              </>}
             </Flex>
             {!isLoading && data && isOkay && (
               <CheckCircleIcon style={{ fontSize: "50px", color: "white" }} />
