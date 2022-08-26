@@ -19,6 +19,7 @@ function EditPaper() {
     literature_review:"",
     methodology:"",
     bibliography:"",
+    funding_amount:""
   });
   // setting a state variable to get the titles from structure
   const [headerNum, setHeaderNum] = useState(0);
@@ -31,6 +32,7 @@ function EditPaper() {
     "literature_review",
     "methodology",
     "bibliography",
+    "funding_amount"
   ];
   let url = "https://webcrawlers-sih.vercel.app/api/proposal/draft/" + id;
   const { data, isLoading, error } = useFetch(url);
